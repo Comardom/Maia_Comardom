@@ -1,0 +1,19 @@
+---
+import "/src/styles/adminAndAuth/login.css";
+import "/src/styles/Global.css";
+import "/src/styles/adminAndAuth/adminPanelUniversalBackground.css";
+import LoginWithQrcodeIsland from '../../components/adminAndAuth/LoginWithQrcodeIsland.vue';
+import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
+import IsDarkOrNotLayout from '../../layouts/IsDarkOrNotLayout.astro';
+---
+
+<IsDarkOrNotLayout title="管理员登录">
+    <main>
+        <ThemeToggleIsland client:load />
+        <LoginWithQrcodeIsland
+                client:load
+                h1DyTxt="管理员登录"
+        />
+    </main>
+    <a id="register-in" href="/admin/register">注册管理员</a>
+</IsDarkOrNotLayout>

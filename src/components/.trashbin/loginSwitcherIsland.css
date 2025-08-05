@@ -1,0 +1,39 @@
+:root {
+    --placeholder-size: 50px;
+    --form-gap: 1rem;
+    --input-height: 1.5rem;
+    --feedback-font-size: 0.9rem;
+}
+html {
+    font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+}
+.big-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+@media (max-width: 768px) {
+    .big-flex{
+        flex-direction: column;
+    }
+}
+button{
+    cursor: pointer;
+    align-self: center;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    height: var(--input-height);
+}
+.placeholder {
+    width: var(--placeholder-size, 50px);
+    height: var(--placeholder-size, 50px);
+    /*background-color: rgba(0, 0, 0, 0.05);*/
+    /*border: 1px dashed #aaa;*/
+    /*border-radius: 6px;*/
+}

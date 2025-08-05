@@ -1,0 +1,17 @@
+---
+import "/src/styles/adminAndAuth/register.css";
+import "/src/styles/Global.css";
+import "/src/styles/adminAndAuth/adminPanelUniversalBackground.css";
+import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
+import IsDarkOrNotLayout from '../../layouts/IsDarkOrNotLayout.astro';
+import RegisterForUidUndPwdIsland from "../../components/adminAndAuth/RegisterForUidUndPwdIsland.vue";
+---
+
+<IsDarkOrNotLayout title="用户注册">
+    <ThemeToggleIsland client:load />
+    <RegisterForUidUndPwdIsland
+            client:load
+            h1DyTxt="用户注册"
+    />
+    <a id="login-in" href="/auth/login">用户登录</a>
+</IsDarkOrNotLayout>

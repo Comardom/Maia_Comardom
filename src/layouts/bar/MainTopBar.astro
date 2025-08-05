@@ -1,0 +1,57 @@
+---
+import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.vue';
+---
+<style>
+    .top-bar {
+        height: 3rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        //background: linear-gradient(to right, #4e54c8, #8f94fb);
+        background-color: #696969;
+        color: white;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1000;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .top-bar-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .theme-toggle-wrapper {
+        margin-right: 3rem;
+        max-width: 5rem; /* 可选，防止撑太宽 */
+    }
+    .logo-title-wrapper {
+        display: flex;
+        align-items: center; /* 垂直居中对齐 logo 和文字 */
+        gap: 0.5rem;
+    }
+    .logo {
+        height: 2rem; /* 控制 logo 高度，避免撑高文字 */
+        width: auto;
+    }
+    .title-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        display: inline-block;
+    }
+</style>
+
+<div class="top-bar">
+    <div class="top-bar-content">
+        <div class="logo-title-wrapper">
+            <img src="/balck_trans_big.svg" alt="logo" class="logo" />
+            <span class="title-text">河南大学网站工作室</span>
+        </div>
+        <div class="theme-toggle-wrapper">
+            <PlasticThemeToggleIsland client:load />
+        </div>
+    </div>
+</div>
+

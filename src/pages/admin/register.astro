@@ -1,0 +1,17 @@
+---
+import "/src/styles/adminAndAuth/register.css";
+import "/src/styles/Global.css";
+import "/src/styles/adminAndAuth/adminPanelUniversalBackground.css";
+import RegisterForTotpIsland from '../../components/adminAndAuth/RegisterForTOTPIsland.vue';
+import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
+import IsDarkOrNotLayout from '../../layouts/IsDarkOrNotLayout.astro';
+---
+
+<IsDarkOrNotLayout title="管理员注册">
+    <ThemeToggleIsland client:load />
+    <RegisterForTotpIsland
+            client:load
+            h1DyTxt="管理员注册"
+    />
+    <a id="login-in" href="/admin/login">管理员登录</a>
+</IsDarkOrNotLayout>

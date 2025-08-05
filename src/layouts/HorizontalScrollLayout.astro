@@ -1,0 +1,29 @@
+---
+const { title = '河南大学网站工作室' } = Astro.props;
+import "/src/styles/Global.css";
+import '/src/styles/main/horizontalScroll.css';
+import MainTopBar from './bar/MainTopBar.astro';
+import MainFooter from './bar/MainFooter.astro';
+---
+
+<html lang="zh">
+<head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+<MainTopBar />
+<main class="horizontal-scroll">
+    <slot />
+</main>
+<MainFooter />
+</body>
+</html>
+
+<script type="module" is:inline>
+    import { initHorizontalScroll } from '/src/utils/horizontalScroll.js';
+    window.addEventListener('DOMContentLoaded', () => {
+        initHorizontalScroll('.horizontal-scroll', true);
+    });
+</script>

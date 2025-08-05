@@ -1,0 +1,30 @@
+/*/src/styles/main/horizontalScroll.css*/
+html,body{
+    overflow-y: hidden;
+}
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.horizontal-scroll section {
+    flex: none;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 3rem; /* 空出顶部空间 */
+    box-sizing: border-box; /* 确保 padding 不撑大 section */
+    margin-right: 1rem;
+    scroll-snap-align: start;
+}

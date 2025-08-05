@@ -1,0 +1,19 @@
+---
+import "/src/styles/adminAndAuth/management.css";
+import "/src/styles/Global.css";
+import "/src/styles/adminAndAuth/adminPanelUniversalBackground.css";
+import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
+import IsDarkOrNotLayout from '../../layouts/IsDarkOrNotLayout.astro';
+
+import { checkAdmin } from '../../utils/adminCheckIfLogin';
+
+const isAdmin = checkAdmin(Astro.request);
+if (!isAdmin) {
+    return new Response('Forbidden', { status: 403 });
+}
+---
+<IsDarkOrNotLayout title="Maia后台管理">
+    <main>
+        <ThemeToggleIsland client:load />
+    </main>
+</IsDarkOrNotLayout>
