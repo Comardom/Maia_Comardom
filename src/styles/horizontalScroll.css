@@ -1,7 +1,8 @@
-/*/src/styles/main/horizontalScroll.css*/
-html,body{
+/*/src/styles/horizontalScroll.css*/
+html, body{
     overflow-y: hidden;
 }
+
 .horizontal-scroll {
     display: flex;
     overflow-x: auto;
@@ -23,8 +24,11 @@ html,body{
     flex: none;
     width: 100vw;
     height: 100vh;
-    padding-top: 3rem; /* 空出顶部空间 */
+    padding-top: 2rem; /* 空出顶部空间 */
     box-sizing: border-box; /* 确保 padding 不撑大 section */
     margin-right: 1rem;
     scroll-snap-align: start;
 }
+ body, h1, h2, h3, p, span, div {
+     color: var(--theme-color);
+ }

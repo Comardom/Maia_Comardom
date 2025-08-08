@@ -1,15 +1,19 @@
 ---
 const { title = '河南大学网站工作室' } = Astro.props;
+const themeCookie = Astro.cookies.get('theme');
+const themeValue = themeCookie?.value;
+const isDark = themeValue === 'dark';
 import "/src/styles/Global.css";
-import '/src/styles/main/horizontalScroll.css';
+import '/src/styles/horizontalScroll.css';
 import MainTopBar from './bar/MainTopBar.astro';
 import MainFooter from './bar/MainFooter.astro';
 ---
 
-<html lang="zh">
+<html lang="zh" class="dark">
 <head>
     <title>{title}</title>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/plain_balck_trans_big.svg" />
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>

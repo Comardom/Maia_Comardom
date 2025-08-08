@@ -2,13 +2,12 @@
 import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.vue';
 ---
 <style>
-    .top-bar {
-        height: 3rem;
+    #top-bar {
+        height: 2rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        //background: linear-gradient(to right, #4e54c8, #8f94fb);
         background-color: #696969;
         color: white;
         padding: 0.5rem 1rem;
@@ -17,6 +16,8 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
         font-size: 1rem;
         line-height: 1.5;
     }
+    @media (max-width: 768px) {
+    }
     .top-bar-content {
         display: flex;
         align-items: center;
@@ -24,13 +25,19 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
         flex-wrap: wrap;
     }
     .theme-toggle-wrapper {
-        margin-right: 3rem;
+        margin-right: 2.25rem;
         max-width: 5rem; /* 可选，防止撑太宽 */
+    }
+    @media (max-width: 768px) {
+        .theme-toggle-wrapper {
+            padding-right: 0.3rem;
+        }
     }
     .logo-title-wrapper {
         display: flex;
         align-items: center; /* 垂直居中对齐 logo 和文字 */
         gap: 0.5rem;
+        padding-left: 0.5rem;
     }
     .logo {
         height: 2rem; /* 控制 logo 高度，避免撑高文字 */
@@ -43,10 +50,10 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
     }
 </style>
 
-<div class="top-bar">
+<div id="top-bar">
     <div class="top-bar-content">
         <div class="logo-title-wrapper">
-            <img src="/balck_trans_big.svg" alt="logo" class="logo" />
+            <img src="/plain_balck_trans_big.svg" alt="logo" class="logo">
             <span class="title-text">河南大学网站工作室</span>
         </div>
         <div class="theme-toggle-wrapper">

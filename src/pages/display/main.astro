@@ -1,15 +1,28 @@
 ---
-import HorizontalScrollLayout from '../../layouts/HorizontalScrollLayout.astro';
+import DarkOrNotWithHorizontalScrollLayout from '../../layouts/DarkOrNotWithHorizontalScrollLayout.astro';
 
 import Studio from '../display/mainIslands/Studio.astro';
+import DesignDepartmentIsland from '../display/mainIslands/DesignDepartmentIsland.astro';
+import NewMediaCentreIsland from '../display/mainIslands/NewMediaCentreIsland.vue';
 ---
-<HorizontalScrollLayout title="页面标题示例">
-    475611475189465
+<DarkOrNotWithHorizontalScrollLayout title="河南大学网站工作室部门介绍">
     <section id="one">
-        <Studio />
+        <DesignDepartmentIsland />
     </section>
     <section id="two">
-        <h2>内容二</h2>
-        <p>这是第二部分的内容。</p>
+
+        <DesignDepartmentIsland />
     </section>
-</HorizontalScrollLayout>
+    <section id="t">
+        <DesignDepartmentIsland />
+        <!--<NewMediaCentreIsland client:load/>-->
+    </section>
+    <section id="3">
+
+        <DesignDepartmentIsland />
+    </section>
+    <section id="wo">
+
+        <DesignDepartmentIsland />
+    </section>
+</DarkOrNotWithHorizontalScrollLayout>

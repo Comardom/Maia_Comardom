@@ -34,25 +34,24 @@ onMounted(() => {
 	applyTheme(isDark.value);
 });
 </script>
-
+<style src="../styles/Global.css" />
 <style scoped>
 .theme-toggle {
 	padding: 0.4rem 0.8rem;
 	font-size: 0.9rem;
-	background-color: #eee;
-	border: 1px solid #ccc;
+	background-color: var(--theme-bg-button);
+	color: var(--theme-color-button);
+	border: 1px solid var(--theme-border-button);
 	border-radius: 6px;
 	cursor: pointer;
-	transition: background-color 0.2s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.3s ease;
 }
 
 .theme-toggle:hover {
-	background-color: #ddd;
-}
-
-.dark .theme-toggle {
-	background-color: #333;
-	color: white;
-	border-color: #666;
+	background-color: var(--theme-bg-button-hover);
 }
 </style>
+

@@ -1,0 +1,64 @@
+---
+const { title = '设计部' } = Astro.props;
+---
+
+<style>
+    .designDPM-container {
+        box-sizing: border-box;
+        padding: 2rem 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .designDPM-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--theme-color);
+        font-weight: 700;
+    }
+
+    .designDPM-content {
+        font-size: 1rem;
+        color: var(--theme-color);
+        max-width: 680px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .designDPM-content strong {
+        color: var(--theme-color);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .designDPM-container {
+            padding: 1.5rem 1rem;
+        }
+
+        .designDPM-title {
+            font-size: 1.5rem;
+        }
+
+        .designDPM-content {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+
+<div class="designDPM-container">
+    <h1 class="designDPM-title">{title}</h1>
+    <p class="designDPM-content">
+        <strong>宝藏部门，入股不亏！</strong>设计部是网站工作室中最具创意与实用性的团队之一。我们主要使用 <strong>Photoshop</strong> 进行河南大学官网轮播图设计，以及各类活动宣传海报的制作。
+        <br /><br />
+        在这里，你不仅能掌握图片编辑、图案设计等现代社会的实用技能，还能通过多样化的视觉表达，释放你的创意灵感。每一张海报，都是你个性与审美的展现。
+        <br /><br />
+        无论你是设计大佬，还是刚刚入门的小白，我们都欢迎你加入。通过学长学姐们的 <strong>“手把手”培训</strong>，你将快速掌握设计工具与技巧，逐步成长为真正的视觉表达者。
+        <br /><br />
+        在设计部，我们一起学习，一起进步。期待与你的相遇，让创意点亮校园！
+    </p>
+</div>

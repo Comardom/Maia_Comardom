@@ -1,6 +1,10 @@
 // src/utils/horizontalScroll.js
 
 export function initHorizontalScroll(selector = '.horizontal-scroll', enableHashJump = false) {
+    document.documentElement.style.overflowY = 'hidden';
+    document.body.style.overflowY = 'hidden';
+    // document.body.main.style.overflowY = 'hidden';
+
     const el = document.querySelector(selector);
     if (!el) return;
 
@@ -12,6 +16,7 @@ export function initHorizontalScroll(selector = '.horizontal-scroll', enableHash
             requestAnimationFrame(() => {
                 if (el.scrollWidth > el.clientWidth) {
                     e.preventDefault();
+                    //此处写的没问题，横向滑动的精髓就在这里
                     el.scrollBy({ left: e.deltaY, behavior: 'auto' });
                 }
                 ticking = false;
