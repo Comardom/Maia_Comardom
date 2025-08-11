@@ -1,0 +1,10 @@
+---
+import IsDarkOrNotLayout from "../../layouts/IsDarkOrNotLayout.astro"
+import "/src/styles/Global.css";
+import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
+import MainHeader from "../../layouts/bar/MainHeader.vue";
+---
+<IsDarkOrNotLayout>
+    <ThemeToggleIsland client:load />
+    <MainHeader client:load />
+</IsDarkOrNotLayout>

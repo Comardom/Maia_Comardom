@@ -5,7 +5,7 @@ npm cache clean --force
 npm install otplib qrcode @astrojs/vue --verbose
 npm install @astrojs/node vue --verbose
 npm install express mongoose cookie-parser --verbose
-npm install crypto-browserify axios --verbose
+npm install crypto-browserify axios @types/node type --verbose
 systemctl status mongodb 
 astro preferences disable devToolbar
 #后续测试

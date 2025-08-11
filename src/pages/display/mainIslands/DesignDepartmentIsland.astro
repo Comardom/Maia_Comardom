@@ -1,18 +1,91 @@
 ---
 const { title = '设计部' } = Astro.props;
+
+const iconPaths = [
+    '/plastic-trans-wswd.svg',
+    '/ps480.svg',
+    '/ai480.svg',
+    '/id480.svg',
+    '/lr480.svg',
+];
 ---
 
 <style>
-    .designDPM-container {
-        box-sizing: border-box;
-        padding: 2rem 1rem;
-        height: 100%;
+
+
+
+
+
+    .designDPM-wrapper {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-radius: 8px;
+        //padding: 2rem 1rem;
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 10;
+    }
+
+    .designDPM-side {
+        width: 5rem;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .designDPM-scroll {
+        display: flex;
+        flex-direction: column;
+        animation: scrollLoop 5s linear infinite;
+        will-change: transform;
+    }
+
+    .designDPM-scroll img {
+        width: 5rem;
+        height: 5rem;
+        object-fit: contain;
+        margin-bottom: 0;
+    }
+
+    @keyframes scrollLoop {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+
+    .designDPM-mobileScroll {
+        display: none;
+        width: 100%;
+        height:3rem;
+        overflow: hidden;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .designDPM-mobileTrack {
+        display: flex;
+        animation: scrollX 5s linear infinite;
+        will-change: transform;
+    }
+
+    .designDPM-mobileTrack img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    @keyframes scrollX {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .designDPM-center {
+        flex: 1;
+        max-width: 75rem;
+        padding: 0 1rem;
         text-align: center;
+        z-index: 10;
     }
 
     .designDPM-title {
@@ -25,9 +98,9 @@ const { title = '设计部' } = Astro.props;
     .designDPM-content {
         font-size: 1rem;
         color: var(--theme-color);
-        max-width: 680px;
         line-height: 1.8;
-        text-align: justify;
+        text-align: center;
+        z-index: 10;
     }
 
     .designDPM-content strong {
@@ -36,8 +109,14 @@ const { title = '设计部' } = Astro.props;
     }
 
     @media (max-width: 768px) {
-        .designDPM-container {
-            padding: 1.5rem 1rem;
+        .designDPM-wrapper {
+            flex-direction: column;
+            //height: 100vh;
+            overflow: hidden;
+        }
+
+        .designDPM-side {
+            display: none;
         }
 
         .designDPM-title {
@@ -47,18 +126,215 @@ const { title = '设计部' } = Astro.props;
         .designDPM-content {
             font-size: 0.95rem;
         }
+
+        .designDPM-center {
+            flex: 1;
+            overflow-y: auto;
+            //padding-bottom: 1rem;
+        }
+
+        .designDPM-mobileScroll {
+            display: block;
+        }
     }
 </style>
 
-<div class="designDPM-container">
-    <h1 class="designDPM-title">{title}</h1>
-    <p class="designDPM-content">
-        <strong>宝藏部门，入股不亏！</strong>设计部是网站工作室中最具创意与实用性的团队之一。我们主要使用 <strong>Photoshop</strong> 进行河南大学官网轮播图设计，以及各类活动宣传海报的制作。
-        <br /><br />
-        在这里，你不仅能掌握图片编辑、图案设计等现代社会的实用技能，还能通过多样化的视觉表达，释放你的创意灵感。每一张海报，都是你个性与审美的展现。
-        <br /><br />
-        无论你是设计大佬，还是刚刚入门的小白，我们都欢迎你加入。通过学长学姐们的 <strong>“手把手”培训</strong>，你将快速掌握设计工具与技巧，逐步成长为真正的视觉表达者。
-        <br /><br />
-        在设计部，我们一起学习，一起进步。期待与你的相遇，让创意点亮校园！
-    </p>
+<div class="designDPM-wrapper">
+    <!--<div class="designDPM-side">-->
+    <!--    <div class="designDPM-scroll">-->
+    <!--        {['/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg'].map(src => (-->
+    <!--                <img class="theme-icon" alt="icon" src={src} />-->
+    <!--        ))}-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div class="designDPM-side">
+        <div class="designDPM-scroll">
+            {['/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',].map(src => (
+                    <img class="theme-icon" alt="icon" src={src} />
+            ))}
+        </div>
+    </div>
+    <div class="designDPM-center">
+        <h1 class="designDPM-title">{title}</h1>
+        <p class="designDPM-content">
+            <strong>专注于图像处理与视觉设计的团队</strong><br /><br />
+            设计部专注于图像编辑、视觉构图与数字内容制作。我们主要使用 <strong>Adobe Photoshop</strong> 进行河南大学官网首页轮播图的设计，以及各类校园活动宣传海报的图像创作与排版执行。
+            <br /><br />
+            <!--在这里，你将有机会掌握 Adobe 系列软件的专业应用，包括 <strong>Photoshop</strong> 的图层管理、蒙版运用、滤镜特效与色彩校正，<strong>Illustrator</strong> 的矢量绘制与图形构建，以及 <strong>InDesign</strong> 的版式编排与多页文档设计。-->
+            从图层通道到调色渐变，从抠图去水印到液化加蒙版，学会 PS，不只是修图，是做出让人‘哇’的作品。
+            <br /><br />
+            无论你是具备一定基础的设计爱好者，还是刚刚接触图像处理的新手，我们都欢迎你加入。通过学长学姐的 <strong>技能拆解式教学</strong> 与 <strong>项目驱动式训练</strong>，你将快速掌握软件操作技巧，理解图像构成原理，并逐步具备独立完成视觉任务的能力。
+            <br /><br />
+            我们也同样注重美的雕琢与创意。每一张海报，都是你个性与审美的展现。在设计部，我们一起学习，一起进步。期待与你的相遇，让创意点亮校园！
+        </p>
+        <a target="_blank" href="https://qun.qq.com/universal-share/share?ac=1&authKey=ucO8jPv%2Bt0%2B0G7RbWq90eTtmyu9NSnp0cY0qcifTMHrAWpToPU7W4mwfcUA0cKh6&busi_data=eyJncm91cENvZGUiOiI5NzQ2NDk2MjYiLCJ0b2tlbiI6Imc0ekplMUFtT3djeStwWE95Tm9rZi8xb05kTnBMWFFoQW9SdHpxTzRNZlYrZDloOEZzaEg0RmtwTWhDZDM0MVUiLCJ1aW4iOiIyNTY4MDc0NDg3In0%3D&data=cf14TgTcBnn95sE-UspI_DbCf2U1CDPFunn7n9MQEgq-6tDJ6tzDMDPBBzcqOlZXoMmtzqrghS7uXHle0XGBnw&svctype=4&tempid=h5_group_info">加入我们</a>
+    </div>
+    <div class="designDPM-mobileScroll">
+        <div class="designDPM-mobileTrack">
+            {['/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',].map(src => (
+                    <img class="theme-icon" alt="icon" src={src} />
+            ))}
+        </div>
+    </div>
+    <div class="designDPM-side">
+        <div class="designDPM-scroll">
+            {['/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',
+                '/plastic-trans-wswd.svg',
+                '/ps480.svg',].map(src => (
+                    <img class="theme-icon" alt="icon" src={src} />
+            ))}
+        </div>
+    </div>
+    <!--<div class="designDPM-mobileScroll">-->
+    <!--    <div class="designDPM-mobileTrack">-->
+    <!--        {['/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg'].map(src => (-->
+    <!--                <img class="theme-icon" alt="icon" src={src} />-->
+    <!--        ))}-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="designDPM-side">-->
+    <!--    <div class="designDPM-scroll">-->
+    <!--        {['/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ps480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/ai480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/id480.svg',-->
+    <!--            '/plastic-trans-wswd.svg',-->
+    <!--            '/lr480.svg'].map(src => (-->
+    <!--                <img class="theme-icon" alt="icon" src={src} />-->
+    <!--        ))}-->
+    <!--    </div>-->
+    <!--</div>-->
+
 </div>
+

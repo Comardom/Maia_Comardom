@@ -2,19 +2,36 @@
 import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.vue';
 ---
 <style>
+    :root {
+        --top-bar-bg: #696969;
+        --top-bar-color: white;
+    }
+    html.light {
+        --top-bar-bg: #f5f5f5;
+        --top-bar-color: #333;
+    }
+    html.dark {
+        --top-bar-bg: #2c2c2c;
+        --top-bar-color: #f0f0f0;
+    }
+    #top-bar {
+        background-color: var(--top-bar-bg);
+        color: var(--top-bar-color);
+    }
+
     #top-bar {
         height: 2rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #696969;
+        //background-color: var(--top-bar-bg);
+        //background-color: #696969;
         color: white;
-        padding: 0.5rem 1rem;
+        padding: 0 1rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         z-index: 1000;
         font-size: 1rem;
-        line-height: 1.5;
     }
     @media (max-width: 768px) {
     }
@@ -25,7 +42,7 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
         flex-wrap: wrap;
     }
     .theme-toggle-wrapper {
-        margin-right: 2.25rem;
+        margin-right: 2rem;
         max-width: 5rem; /* 可选，防止撑太宽 */
     }
     @media (max-width: 768px) {
@@ -37,7 +54,7 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
         display: flex;
         align-items: center; /* 垂直居中对齐 logo 和文字 */
         gap: 0.5rem;
-        padding-left: 0.5rem;
+        padding-left: 2rem;
     }
     .logo {
         height: 2rem; /* 控制 logo 高度，避免撑高文字 */
@@ -53,7 +70,7 @@ import PlasticThemeToggleIsland from '../../components/PlasticThemeToggleIsland.
 <div id="top-bar">
     <div class="top-bar-content">
         <div class="logo-title-wrapper">
-            <img src="/plain_balck_trans_big.svg" alt="logo" class="logo">
+            <img src="/plain_black_trans_big.svg" alt="logo" class="logo">
             <span class="title-text">河南大学网站工作室</span>
         </div>
         <div class="theme-toggle-wrapper">

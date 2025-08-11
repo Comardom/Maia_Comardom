@@ -6,6 +6,7 @@ const isDark = themeValue === 'dark';
 import "/src/styles/Global.css";
 import '/src/styles/horizontalScroll.css';
 import MainTopBar from './bar/MainTopBar.astro';
+import MainHeader from "./bar/MainHeader.vue";
 import MainFooter from './bar/MainFooter.astro';
 ---
 
@@ -13,11 +14,12 @@ import MainFooter from './bar/MainFooter.astro';
 <head>
     <title>{title}</title>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/plain_balck_trans_big.svg" />
+    <link rel="icon" type="image/svg+xml" href="/plain_black_trans_big.svg" />
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-<MainTopBar />
+<!--<MainTopBar />-->
+<MainHeader client:load />
 <main class="horizontal-scroll">
     <slot />
 </main>
