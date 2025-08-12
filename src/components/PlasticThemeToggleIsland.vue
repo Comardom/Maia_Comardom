@@ -34,7 +34,7 @@ onMounted(() => {
 	applyTheme(isDark.value);
 });
 </script>
-<style src="../styles/Global.css" />
+<style src="../styles/global.css" />
 <style scoped>
 .theme-toggle {
 	padding: 0.4rem 0.8rem;
@@ -53,5 +53,6 @@ onMounted(() => {
 .theme-toggle:hover {
 	background-color: var(--theme-bg-button-hover);
 }
+
 </style>
 

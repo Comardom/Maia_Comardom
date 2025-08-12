@@ -55,12 +55,12 @@ onMounted(() => {
 }
 
 #dark-toggle:hover {
-  background-color: #ddd;
+	background-color: #ddd;
 }
 
 .dark #dark-toggle {
-  background-color: #333;
-  color: white;
-  border-color: #666;
+	background-color: #333;
+	color: white;
+	border-color: #666;
 }
 </style>

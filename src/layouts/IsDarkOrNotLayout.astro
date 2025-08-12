@@ -2,15 +2,19 @@
 const themeCookie = Astro.cookies.get('theme');
 const themeValue = themeCookie?.value;
 const isDark = themeValue === 'dark';
-const title = Astro.props.title || '河南大学网站工作室';
+const { title = '河南大学网站工作室' } = Astro.props;
+import "/src/styles/global.css";
+//黑白logo引入
+import { logoMap } from "../utils/logoMap"
+const logoSrc = logoMap[isDark ? 'dark' : 'light'];
 ---
 
-<html lang="zh" class="dark">
+<html lang="zh" class={isDark ? 'dark' : ''} data-theme={isDark ? 'dark' : 'light'}>
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/plain_black_trans_big.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href={logoSrc} />
     <slot name="head" />
 </head>
 <body>

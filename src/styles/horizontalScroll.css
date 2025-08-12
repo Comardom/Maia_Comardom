@@ -29,6 +29,3 @@ html, body{
     margin-right: 1rem;
     scroll-snap-align: start;
 }
- body, h1, h2, h3, p, span, div {
-     color: var(--theme-color);
- }

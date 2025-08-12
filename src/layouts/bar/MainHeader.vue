@@ -103,7 +103,4 @@ onMounted(() => {
 	padding-left:  1rem;
 }
 
-.theme-toggle-wrapper {
-	margin-right: 3rem;
-}
 </style>

@@ -1,11 +1,5 @@
 :root {
-    --theme-bg: repeating-linear-gradient(
-            to right,
-            #f0f0f0,
-            #f0f0f0 2px,
-            #ffffff 1px,
-            #ffffff 4px
-    );
+    --theme-bg: repeating-linear-gradient( to right, #f0f0f0, #f0f0f0 2px, #ffffff 1px, #ffffff 4px );
     --theme-color: #222;
     --theme-link: #0066cc; /* 浅色模式链接颜色 */
     --theme-bg-button: white;
@@ -13,24 +7,14 @@
     --theme-border-button: #ccc;
     --theme-color-button: #222;
 }
-
 .dark {
-    --theme-bg: repeating-linear-gradient(
-            to right,
-            #1a1a1a,
-            #1a1a1a 2px,
-            #2b2b2b 1px,
-            #2b2b2b 4px
-    );
+    --theme-bg: repeating-linear-gradient( to right, #1a1a1a, #1a1a1a 2px, #2b2b2b 1px, #2b2b2b 4px );
     --theme-color: #e0e0e0;
     --theme-link: #66b2ff; /* 深色模式链接颜色，更亮的蓝 */
     --theme-bg-button: #2b2b2b;
     --theme-bg-button-hover: #3c3c3c;
     --theme-border-button: #666;
-    --theme-color-button: #e0e0e0;
-}
-
-
+    --theme-color-button: #e0e0e0; }
 html, body {
     background: var(--theme-bg);
     color: var(--theme-color);
@@ -38,8 +22,7 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
-/*  新增链接样式 */
+/* 新增链接样式 */
 a {
     color: var(--theme-link);
     text-decoration: underline;
@@ -49,38 +32,30 @@ a:hover {
     opacity: 0.85;
     text-decoration: none;
 }
-button,
-input,
-textarea {
+button, input, textarea {
     background-color: white;
     color: #222;
     border: 1px solid #ccc;
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
-
-.dark button,
-.dark input,
-.dark textarea {
+.dark button, .dark input, .dark textarea {
     background-color: #2b2b2b; /* 深灰背景 */
-    color: #e0e0e0;            /* 亮灰字体 */
+    color: #e0e0e0; /* 亮灰字体 */
     border: 1px solid #666;
 }
-
 .dark input::placeholder {
     color: #999;
 }
-
 ::selection {
     background-color: #ccc;
     color: black;
 }
-
 .dark ::selection {
     background-color: #555;
     color: white;
 }
-
 .dark button:hover {
     background-color: #3c3c3c; /* 比当前 #333 稍亮一点，柔和但不突兀 */
     color: #cdcdcd;
 }
+body, h1, h2, h3, p, span, div { color: var(--theme-color); }

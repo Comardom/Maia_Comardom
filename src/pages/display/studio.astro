@@ -1,10 +1,24 @@
 ---
+const { title = '河南大学网站工作室' } = Astro.props;
 import IsDarkOrNotLayout from "../../layouts/IsDarkOrNotLayout.astro"
-import "/src/styles/Global.css";
-import ThemeToggleIsland from '../../components/ThemeToggleIsland.vue';
-import MainHeader from "../../layouts/bar/MainHeader.vue";
+import "/src/styles/global.css";
+import DisplayStudioBreathLightHeader from "./studioContents/DisplayStudioBreathLightHeader.vue"
+import DisplayStudioBreathBarHeader from "./studioContents/DisplayStudioBreathBarHeader.vue"
+import DisplayStudioBreathHeader from "./studioContents/DisplayStudioBreathHeader.vue"
 ---
-<IsDarkOrNotLayout>
-    <ThemeToggleIsland client:load />
-    <MainHeader client:load />
+<IsDarkOrNotLayout title={title}>
+    <!--<DisplayStudioBreathLightHeader client:load />-->
+    <!--<DisplayStudioBreathBarHeader client:load />-->
+    <DisplayStudioBreathHeader client:load />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
 </IsDarkOrNotLayout>
