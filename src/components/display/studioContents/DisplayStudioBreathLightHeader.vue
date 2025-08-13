@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import PlasticThemeToggleIsland from "../../../components/PlasticThemeToggleIsland.vue"
+import PlasticThemeToggleIsland from "../../PlasticThemeToggleIsland.vue"
 //监测黑白主题
-import { useThemeObserver } from "../../../utils/useThemeObserver"
+import { useThemeObserver } from "../../../utils/useThemeObserver.ts"
 const { isDark } = useThemeObserver()
 //黑白logo引入
 import {computed} from "vue";
-import { logoMap } from "../../../utils/logoMap"
+import { logoMap } from "../../../utils/logoMap.ts"
 const logoSrc = computed(() => logoMap[isDark.value ? 'dark' : 'light'])
 
 </script>

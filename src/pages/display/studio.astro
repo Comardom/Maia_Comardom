@@ -1,24 +1,35 @@
 ---
 const { title = '河南大学网站工作室' } = Astro.props;
-import IsDarkOrNotLayout from "../../layouts/IsDarkOrNotLayout.astro"
+import IsDarkOrNotWithVerticalScrollLayout from "../../layouts/IsDarkOrNotWithVerticalScrollLayout.astro"
 import "/src/styles/global.css";
-import DisplayStudioBreathLightHeader from "./studioContents/DisplayStudioBreathLightHeader.vue"
-import DisplayStudioBreathBarHeader from "./studioContents/DisplayStudioBreathBarHeader.vue"
-import DisplayStudioBreathHeader from "./studioContents/DisplayStudioBreathHeader.vue"
+import "/src/styles/display/studio.css"
+import DisplayStudioBreathHeader from "../../components/display/studioContents/DisplayStudioBreathHeader.vue"
+import FullScreenPhoto from "../../components/display/studioContents/FullScreenPhoto.vue"
+//监测并改变data-section
+import SnapObserver from "../../components/display/studioContents/SnapObserver.vue"
+//检测设备UA
+import DeviceDetector from "../../components/display/studioContents/DeviceDetector.vue"
 ---
-<IsDarkOrNotLayout title={title}>
-    <!--<DisplayStudioBreathLightHeader client:load />-->
-    <!--<DisplayStudioBreathBarHeader client:load />-->
-    <DisplayStudioBreathHeader client:load />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-    1<br />1<br />1<br />1<br />1<br />1<br />1<br />
-</IsDarkOrNotLayout>
+<IsDarkOrNotWithVerticalScrollLayout title={title}>
+    <SnapObserver client:load />
+    <DeviceDetector client:load />
+    <div class="snap-wrapper">
+        <DisplayStudioBreathHeader client:load />
+        <div class="snap-section" id="section-1" data-section="1">
+            <FullScreenPhoto client:load message="1" />
+        </div>
+        <div class="snap-section" id="section-2" data-section="2">
+            <FullScreenPhoto client:load message="2" />
+        </div>
+        <div class="snap-section" id="section-3" data-section="3">
+            <FullScreenPhoto client:load message="3" />
+        </div>
+        <div class="snap-section" id="section-4" data-section="4">
+            <FullScreenPhoto client:load message="4" />
+        </div>
+        <div class="snap-section" id="section-5" data-section="5">
+            <FullScreenPhoto client:load message="5" />
+        </div>
+    </div>
+</IsDarkOrNotWithVerticalScrollLayout>
+<!--const current = document.getElementById("snap-state")?.getAttribute("data-current-section");-->

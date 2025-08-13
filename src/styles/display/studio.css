@@ -1,3 +1,16 @@
-.body{
-    scroll-snap-type: y mandatory;
+.snap-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.snap-section {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+#snap-state[data-current-section="3"] ~ .some-element {
+    opacity: 1;
 }

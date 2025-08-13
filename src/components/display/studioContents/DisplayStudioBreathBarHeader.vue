@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import PlasticThemeToggleIsland from "../../../components/PlasticThemeToggleIsland.vue"
+import PlasticThemeToggleIsland from "../../PlasticThemeToggleIsland.vue"
 //监测黑白主题
-import { useThemeObserver } from "../../../utils/useThemeObserver"
+import { useThemeObserver } from "../../../utils/useThemeObserver.ts"
 const { isDark } = useThemeObserver()
 //黑白logo引入
 import {computed} from "vue";
-import { logoMap } from "../../../utils/logoMap"
+import { logoMap } from "../../../utils/logoMap.ts"
 const logoSrc = computed(() => logoMap[isDark.value ? 'dark' : 'light'])
-//呼吸动效
-import {useBreathingMode} from "./useBreathingMode.ts";
-const { breathingClasses } = useBreathingMode(isDark)
+
 </script>
 
 <template>
@@ -17,20 +15,13 @@ const { breathingClasses } = useBreathingMode(isDark)
 		:class="isDark ? 'dark' : ''"
 		:data-theme="isDark ? 'dark' : 'light'"
 	>
-		<div
-			:class="['top-bar', isDark ? 'dark' : 'light', ...breathingClasses]"
-		>
+		<div :class="['top-bar', isDark ? 'dark' : 'light']">
 			<div class="top-bar-content">
 				<div class="logo-title-wrapper">
 					<a href="">
 						<img :src=logoSrc alt="logo" class="logo"/>
 					</a>
 					<span class="title-text">河南大学网站工作室</span>
-				</div>
-				<div>
-					<a href="">
-					
-					</a>
 				</div>
 				<div class="theme-toggle-wrapper">
 					<PlasticThemeToggleIsland client:load />
@@ -41,53 +32,23 @@ const { breathingClasses } = useBreathingMode(isDark)
 </template>
 
 <style scoped>
+
 @keyframes breathe-height {
 	0%, 100% {
 		transform: scaleY(1);
 	}
 	50% {
-		transform: scaleY(1.07);
+		transform: scaleY(1.07); /* 吸气时稍微拉伸 */
 	}
 }
-
-@keyframes breathe-dark {
-	0%, 100% {
-		filter: brightness(0.9);
-	}
-	50% {
-		filter: brightness(1.09);
-	}
-}
-
-@keyframes breathe-light {
-	0%, 100% {
-		filter: brightness(1);
-	}
-	50% {
-		filter: brightness(0.89);
-	}
-}
-
-.breathe-stretch {
+.top-bar {
 	animation: breathe-height 4.75s ease-in-out infinite;
-	transform-origin: top center;
+	transform-origin: top center; /* 从顶部拉伸，不影响底部对齐 */
 }
-
-.breathe-dark {
-	animation: breathe-dark 4.75s ease-in-out infinite;
-	filter: brightness(0.9);
-}
-
-.breathe-light {
-	animation: breathe-light 4.75s ease-in-out infinite;
-	filter: brightness(1);
-}
-
-
 
 
 .top-bar {
-	position: relative;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
