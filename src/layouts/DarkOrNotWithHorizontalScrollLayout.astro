@@ -3,7 +3,7 @@ const { title = '河南大学网站工作室' } = Astro.props;
 const themeCookie = Astro.cookies.get('theme');
 const themeValue = themeCookie?.value;
 const isDark = themeValue === 'dark';
-import "/src/styles/Global.css";
+import "/src/styles/global.css";
 import '/src/styles/horizontalScroll.css';
 import MainHeader from "./bar/MainHeader.vue";
 import MainFooter from './bar/MainFooter.astro';

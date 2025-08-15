@@ -8,7 +8,7 @@ import "/src/styles/global.css";
 import { logoMap } from "../utils/logoMap"
 const logoSrc = logoMap[isDark ? 'dark' : 'light'];
 //
-import SmoothSnapScroll from "../components/SmoothSnapScroll.vue";
+
 ---
 
 <html lang="zh" class={isDark ? 'dark' : ''} data-theme={isDark ? 'dark' : 'light'}>
@@ -23,8 +23,10 @@ import SmoothSnapScroll from "../components/SmoothSnapScroll.vue";
             margin: 0;
             padding: 0;
             height: 100%;
-            scroll-behavior: auto;
-            overflow-y: scroll;
+            width: 100%;
+            overflow: hidden;
+            //scroll-behavior: auto;
+            //overflow-y: scroll;
             scroll-padding-top: 0;
             touch-action: pan-y;
             /* 隐藏滚动条 */
@@ -35,15 +37,14 @@ import SmoothSnapScroll from "../components/SmoothSnapScroll.vue";
             display: none; /* Chrome, Safari */
         }
         .is-desktop{
-            scroll-snap-type: y mandatory;
+            //scroll-snap-type: y proximity;
         }
         .is-mobile{
-            scroll-snap-type: y mandatory;
+            //scroll-snap-type: y mandatory;
         }
     </style>
 </head>
 <body>
-<SmoothSnapScroll client:load />
 <slot />
 </body>
 </html>

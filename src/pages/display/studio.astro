@@ -9,10 +9,16 @@ import FullScreenPhoto from "../../components/display/studioContents/FullScreenP
 import SnapObserver from "../../components/display/studioContents/SnapObserver.vue"
 //检测设备UA
 import DeviceDetector from "../../components/display/studioContents/DeviceDetector.vue"
+//动画
+import PageAnimator from "../../components/PageAnimator.vue";
+//侧边切换按钮
+import SideNav from "../../components/SideNav.vue";
 ---
 <IsDarkOrNotWithVerticalScrollLayout title={title}>
     <SnapObserver client:load />
     <DeviceDetector client:load />
+    <PageAnimator client:load />
+    <SideNav client:visible />
     <div class="snap-wrapper">
         <DisplayStudioBreathHeader client:load />
         <div class="snap-section" id="section-1" data-section="1">

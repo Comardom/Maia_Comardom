@@ -2,10 +2,18 @@
 #首次运行
 npm config set registry https://registry.npmmirror.com
 npm cache clean --force
-npm install otplib qrcode @astrojs/vue --verbose
-npm install @astrojs/node vue --verbose
-npm install express mongoose cookie-parser --verbose
-npm install crypto-browserify axios @types/node type --verbose
+#vue环境与后端数据库等
+npm install @astrojs/vue vue --verbose
+npm install @astrojs/node  --verbose
+npm install @types/node type --verbose
+npm install express mongoose --verbose
+#totp使用
+npm install otplib qrcode crypto-browserify --verbose
+#模块等
+npm install axios cookie-parser --verbose
+#非线性动画/事件总线(联系不同vue用)
+npm install gsap mitt --verbose
+#
 systemctl status mongodb 
 astro preferences disable devToolbar
 #后续测试
