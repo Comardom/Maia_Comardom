@@ -30,9 +30,12 @@ onMounted(() => {
 	// --- Observer 监听用户交互 ---
 	const observer = Observer.create({
 		type: "wheel,touch,pointer",
-		wheelSpeed: 1,//-1改为自然滚动
-		onDown: () => goToSection(currentSectionIndex.value + 1, 1),
-		onUp: () => goToSection(currentSectionIndex.value - 1, -1),
+		wheelSpeed: -1,//1改为自然滚动
+		// onDown: () => goToSection(currentSectionIndex.value + 1, 1),
+		// onUp: () => goToSection(currentSectionIndex.value - 1, -1),
+		onDown: () => goToSection(currentSectionIndex.value - 1, -1), // 手指向下滑
+		onUp: () => goToSection(currentSectionIndex.value + 1, 1),    // 手指向上滑
+		
 		tolerance: 10,
 		preventDefault: true,
 	});
