@@ -11,10 +11,10 @@
     "start": "astro preview"
   },
   "dependencies": {
-    "@astrojs/node": "^9.3.3",
+    "@astrojs/node": "^9.4.2",
     "@astrojs/vue": "^5.1.0",
     "@types/node": "^24.2.1",
-    "astro": "^5.10.2",
+    "astro": "^5.13.2",
     "axios": "^1.11.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

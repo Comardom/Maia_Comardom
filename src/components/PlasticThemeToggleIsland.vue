@@ -1,8 +1,10 @@
 <template>
 	<button class="theme-toggle" @click="toggleTheme">
-		{{ isDark ? '🌞 亮色' : '🌙 暗色' }}
+		<span class="emoji">{{ isDark ? '🌞' : '🌙' }}</span>
+		<span class="label">{{ isDark ? '亮色' : '暗色' }}</span>
 	</button>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -41,7 +43,7 @@ onMounted(() => {
 	font-size: 0.9rem;
 	background-color: var(--theme-bg-button);
 	color: var(--theme-color-button);
-	border: 1px solid var(--theme-border-button);
+	border: 1px solid ;
 	border-radius: 6px;
 	cursor: pointer;
 	transition:
@@ -53,6 +55,14 @@ onMounted(() => {
 .theme-toggle:hover {
 	background-color: var(--theme-bg-button-hover);
 }
+.theme-toggle .label {
+	display: inline;
+}
 
+@media (max-width: 48rem) {
+	.theme-toggle .label {
+		display: none;
+	}
+}
 </style>
 

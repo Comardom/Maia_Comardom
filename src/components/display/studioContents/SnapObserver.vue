@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { setupSnapSectionObserver } from "./snapObserver.ts";
+import { setupSnapSectionObserver } from "./scripts/snapObserver.ts";
 
 onMounted(() => {
 	setupSnapSectionObserver();

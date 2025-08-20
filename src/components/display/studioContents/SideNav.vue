@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { eventBus } from '../utils/eventBus';
+import { eventBus } from '../../../utils/eventBus.ts';
 
 const current = ref(0);
 const total = ref(0);

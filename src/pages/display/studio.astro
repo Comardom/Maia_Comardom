@@ -5,6 +5,10 @@ import "/src/styles/global.css";
 import "/src/styles/display/studio.css"
 import DisplayStudioBreathHeader from "../../components/display/studioContents/DisplayStudioBreathHeader.vue"
 import FullScreenPhoto from "../../components/display/studioContents/FullScreenPhoto.vue"
+import BlankPage from "../../components/display/studioContents/BlankPage.vue"
+import DisplayStudioDepartmentsIntro from "../../components/display/studioContents/DisplayStudioDepartmentsIntro.vue"
+import DisplayStudioFooter from "../../components/display/studioContents/DispalyStudioFooter.vue"
+import DisplayStudioTimeline from "../../components/display/studioContents/DisplayStudioTimeline.vue"
 //监测并改变data-section
 import SnapObserver from "../../components/display/studioContents/SnapObserver.vue"
 //检测设备UA
@@ -12,29 +16,29 @@ import DeviceDetector from "../../components/display/studioContents/DeviceDetect
 //动画
 import PageAnimator from "../../components/PageAnimator.vue";
 //侧边切换按钮
-import SideNav from "../../components/SideNav.vue";
+import SideNav from "../../components/display/studioContents/SideNav.vue";
 ---
 <IsDarkOrNotWithVerticalScrollLayout title={title}>
     <SnapObserver client:load />
     <DeviceDetector client:load />
     <PageAnimator client:load />
-    <SideNav client:visible />
+    <!--<SideNav client:visible />-->
     <div class="snap-wrapper">
         <DisplayStudioBreathHeader client:load />
         <div class="snap-section" id="section-1" data-section="1">
-            <FullScreenPhoto client:load message="1" />
+            <FullScreenPhoto client:load />
         </div>
-        <div class="snap-section" id="section-2" data-section="2">
-            <FullScreenPhoto client:load message="2" />
-        </div>
+        <!--<div class="snap-section" id="section-2" data-section="2">-->
+        <!--    <BlankPage client:load message="2" />-->
+        <!--</div>-->
         <div class="snap-section" id="section-3" data-section="3">
-            <FullScreenPhoto client:load message="3" />
+            <DisplayStudioTimeline client:load />
         </div>
         <div class="snap-section" id="section-4" data-section="4">
-            <FullScreenPhoto client:load message="4" />
+            <DisplayStudioDepartmentsIntro client:load />
         </div>
         <div class="snap-section" id="section-5" data-section="5">
-            <FullScreenPhoto client:load message="5" />
+            <DisplayStudioFooter client:load />
         </div>
     </div>
 </IsDarkOrNotWithVerticalScrollLayout>
