@@ -5,10 +5,10 @@ type Tone  = 'white' | 'black';   // 文件名里的颜色
 export type UmbrellaKey = `${State}-${Tone}`;
 
 export const umbrellaAssetMap: Record<UmbrellaKey, string> = {
-    'closed-white': '/displayStudio/umbralla/closed-white-umbralla.svg',
-    'closed-black': '/displayStudio/umbralla/closed-black-umbralla.svg',
-    'open-white'  : '/displayStudio/umbralla/open-white-umbralla.svg',
-    'open-black'  : '/displayStudio/umbralla/open-black-umbralla.svg',
+    'closed-white': '/displayStudio/umbrella/closed-white-umbrella.svg',
+    'closed-black': '/displayStudio/umbrella/closed-black-umbrella.svg',
+    'open-white'  : '/displayStudio/umbrella/open-white-umbrella.svg',
+    'open-black'  : '/displayStudio/umbrella/open-black-umbrella.svg',
 };
 
 export function pickUmbrellaAsset(open: boolean, isDark: boolean): string {

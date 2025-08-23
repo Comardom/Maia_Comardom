@@ -2,21 +2,33 @@
 import { defineConfig } from 'astro/config';
 import vue from '@astrojs/vue';
 import node from '@astrojs/node';
+import tailwind from '@astrojs/tailwind'; // <-- 1. 导入 tailwind
 
+/** @type {import('astro').AstroUserConfig} */
 export default defineConfig({
-    output: "server",
+    output: 'server',
     server: {
-        host: true, // 或 '0.0.0.0'
+        host: true,
         port: 4321
     },
-    integrations: [vue()], // 启用 Vue 集成
-    adapter: node({mode: 'standalone' }),
+    integrations: [
+        vue(),
+        tailwind() // <-- 2. 添加 tailwind 集成
+    ],
+    adapter: node({ mode: 'standalone' }),
     vite: {
+        plugins: [
+        ],
         server: {
             fs: {
-                strict: true, // 限制访问文件路径
+                strict: true,
                 allow: ['src/', 'node_modules/']
             }
-        }
+        },
+        resolve: {
+            alias: {
+                '@': '/src', // <-- 3. 添加 alias
+            },
+        },
     }
 });

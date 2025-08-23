@@ -1,0 +1,471 @@
+/* Import Google Fonts - 必须在最前面，采用更现代的字体组合 */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 主题色：白色与 #4456a7 */
+  --brand-primary: #4456a7;
+  --brand-primary-light: #5569c1;
+  --brand-primary-dark: #353f7a;
+  --brand-gradient: linear-gradient(135deg, #4456a7 0%, #5569c1 100%);
+  
+  /* Extended Color Palette */
+  --color-primary: #4456a7;
+  --color-primary-light: #5569c1;
+  --color-primary-dark: #353f7a;
+
+  --color-secondary: #4456a7;
+  --color-secondary-light: #5569c1;
+  --color-secondary-dark: #353f7a;
+
+  /* Neutral Colors - 以白色为主体 */
+  --color-white: #ffffff;
+  --color-gray-50: #f8f9fb;
+  --color-gray-100: #f1f3f7;
+  --color-gray-200: #e4e8f0;
+  --color-gray-300: #d1d7e3;
+  --color-gray-400: #9ca8bd;
+  --color-gray-500: #6b7794;
+  --color-gray-600: #4b5673;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Text Colors */
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #4b5673;
+  --color-text-muted: #6b7794;
+  --color-text-inverse: #ffffff;
+
+/* Dark Theme Variables */
+  --dark-brand-primary: #5569c1;
+  --dark-brand-primary-light: #6478d1;
+  --dark-brand-primary-dark: #4456a7;
+  --dark-brand-gradient: linear-gradient(135deg, #5569c1 0%, #6478d1 100%);
+  
+  --dark-color-primary: #5569c1;
+  --dark-color-primary-light: #6478d1;
+  --dark-color-primary-dark: #4456a7;
+
+  --dark-color-secondary: #5569c1;
+  --dark-color-secondary-light: #6478d1;
+  --dark-color-secondary-dark: #4456a7;
+
+  /* Dark Neutral Colors */
+  --dark-color-bg: #0f172a;
+  --dark-color-bg-secondary: #1e293b;
+  --dark-color-bg-tertiary: #334155;
+  --dark-color-white: #1e293b;
+  --dark-color-gray-50: #0f172a;
+  --dark-color-gray-100: #1e293b;
+  --dark-color-gray-200: #334155;
+  --dark-color-gray-300: #475569;
+  --dark-color-gray-400: #64748b;
+  --dark-color-gray-500: #94a3b8;
+  --dark-color-gray-600: #cbd5e1;
+  --dark-color-gray-700: #e2e8f0;
+  --dark-color-gray-800: #f1f5f9;
+  --dark-color-gray-900: #f8fafc;
+
+  /* Dark Text Colors */
+  --dark-color-text-primary: #f8fafc;
+  --dark-color-text-secondary: #e2e8f0;
+  --dark-color-text-muted: #94a3b8;
+  --dark-color-text-inverse: #0f172a;
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  /* Spacing Scale */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* Animation Durations */
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.6s;
+
+  /* Easing Functions */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-white);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark,
+html.dark body {
+  background-color: var(--dark-color-bg);
+  color: var(--dark-color-text-primary);
+}
+
+/* Smooth scrolling with reduced motion support */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 var(--spacing-4) 0;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+/* 深色模式下的标题颜色 */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--dark-color-text-primary);
+}
+
+/* 更接近 internalities.eu 的极简留白与阅读体验 */
+p {
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+}
+
+/* 深色模式下的正文文字颜色 */
+html.dark p {
+  color: var(--dark-color-text-primary);
+}
+
+/* 全局文字颜色 */
+body {
+  color: var(--color-text-primary);
+}
+
+html.dark body {
+  color: var(--dark-color-text-primary);
+}
+
+/* 细节：滚动时轻微的阴影变化在 header-scrolled 已实现 */
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+/* 汉堡菜单样式 */
+.hamburger {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: var(--color-gray-700);
+  border-radius: 1px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 8px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 16px;
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 8px;
+  transform: rotate(135deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: 8px;
+  transform: rotate(-135deg);
+}
+
+/* 移动端菜单样式 */
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.mobile-menu.active {
+  max-height: 300px;
+}
+
+/* 导航链接增强样式 */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* 滚动时导航栏样式变化 */
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(68, 86, 167, 0.08);
+}
+
+/* 深色模式下的滚动导航栏样式 */
+html.dark .header-scrolled {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: rgba(107, 123, 168, 0.15);
+}
+
+/* 导航栏动画 */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-animate {
+  animation: slideDown 0.45s ease-out;
+}
+
+/* Header 收缩效果（可与 JS 联动切换类名） */
+.header-condensed {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+/* 移动端菜单子项的动画过渡，集中在全局样式 */
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-out;
+}
+
+.mobile-menu.active .mobile-menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.active .mobile-menu-item:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active .mobile-menu-item:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.active .mobile-menu-item:nth-child(3) { transition-delay: 0.3s; }
+.mobile-menu.active .mobile-menu-item:nth-child(4) { transition-delay: 0.4s; }
+.mobile-menu.active .mobile-menu-item:nth-child(5) { transition-delay: 0.5s; }
+.mobile-menu.active .mobile-menu-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* 导航链接增强 + 轻入场动画 */
+.nav-link-enhanced { opacity: 0; transform: translateY(-6px); animation: navIn 0.5s ease-out forwards; }
+@keyframes navIn { to { opacity: 1; transform: translateY(0); } }
+
+/* 桌面导航条目阶梯式延迟（通过 nth-child，无需内联） */
+.desktop-nav > a.nav-link-enhanced:nth-child(1) { animation-delay: 0s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(2) { animation-delay: 0.1s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(3) { animation-delay: 0.2s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(4) { animation-delay: 0.3s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(5) { animation-delay: 0.4s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(6) { animation-delay: 0.5s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(7) { animation-delay: 0.6s; }
+.desktop-nav > a.nav-link-enhanced:nth-child(8) { animation-delay: 0.7s; }
+
+/* 旋转动画 */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* 头部在透明背景下的文字可读性优化（备用）*/
+.header-on-hero .nav-link-enhanced { color: white; }
+.header-on-hero .nav-link-enhanced:hover { background: rgba(255,255,255,0.1); }
+
+/* ===== Theme utilities (centralize inline styles into CSS classes) ===== */
+/* Colors */
+.text-primary { color: var(--color-primary); }
+.text-primary-dark { color: var(--color-primary-dark); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-soft { background-color: color-mix(in srgb, var(--color-primary) 12%, white); }
+.border-primary { border-color: var(--color-primary); }
+
+/* Buttons */
+.btn-primary-gradient { 
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  box-shadow: 0 8px 20px rgba(107, 123, 168, 0.35);
+}
+.btn-primary-gradient:hover { box-shadow: 0 12px 28px rgba(107, 123, 168, 0.45); }
+.btn-outline-primary { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* Progress bar */
+.progress-gradient { width: var(--scroll-progress, 0%); background: linear-gradient(90deg, var(--color-primary) 0%, #818cf8 50%, #06b6d4 100%); }
+
+/* Typography */
+.display-title { font-size: clamp(64px, 12vw, 180px); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+/* Background images */
+.bg-hero { background: url('/displayOffice/banner.jpg') center/cover no-repeat; }
+.bg-about { background: url('/displayOffice/bg.jpg') center/cover no-repeat; }
+
+/* 深色模式背景处理 */
+html.dark .bg-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/displayOffice/banner.jpg') center/cover no-repeat;
+}
+
+html.dark .bg-about {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/displayOffice/bg.jpg') center/cover no-repeat;
+}
+.bg-activities { background: url('/displayOffice/bg4.jpg') center/cover no-repeat; }
+.bg-members { background: url('/displayOffice/bg3.jpg') center/cover no-repeat; }
+
+/* 深色模式背景处理 - 其他区域 */
+html.dark .bg-activities {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/displayOffice/bg4.jpg') center/cover no-repeat;
+}
+
+html.dark .bg-members {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/displayOffice/bg3.jpg') center/cover no-repeat;
+}
+.bg-footer { background: url('/displayOffice/footer.jpg') center/cover no-repeat; }
+
+/* 深色模式背景处理 - footer */
+html.dark .bg-footer {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/displayOffice/footer.jpg') center/cover no-repeat;
+}
+
+/* Overlays */
+.overlay-hero { background: linear-gradient(135deg, rgba(68,86,167,0.85) 0%, rgba(68,86,167,0.75) 50%, rgba(0,0,0,0.4) 100%); }
+.overlay-about { background: linear-gradient(135deg, rgba(68,86,167,0.92) 0%, rgba(68,86,167,0.85) 62%, rgba(255,255,255,0.55) 100%); }
+
+/* 深色模式遮罩调整 */
+html.dark .overlay-hero {
+  background: linear-gradient(135deg, rgba(68,86,167,0.4) 0%, rgba(68,86,167,0.3) 50%, rgba(0,0,0,0.7) 100%);
+}
+
+html.dark .overlay-about {
+  background: linear-gradient(135deg, rgba(68,86,167,0.5) 0%, rgba(68,86,167,0.4) 62%, rgba(0,0,0,0.8) 100%);
+}
+.overlay-activities { background: linear-gradient(135deg, rgba(68,86,167,0.88) 0%, rgba(68,86,167,0.82) 50%, rgba(107,123,168,0.85) 100%); }
+.overlay-members { background: linear-gradient(135deg, rgba(68,86,167,0.85) 0%, rgba(68,86,167,0.78) 62%, rgba(255,255,255,0.45) 100%); }
+
+/* 深色模式遮罩调整 - 其他区域 */
+html.dark .overlay-activities {
+  background: linear-gradient(135deg, rgba(68,86,167,0.45) 0%, rgba(68,86,167,0.35) 50%, rgba(0,0,0,0.75) 100%);
+}
+
+html.dark .overlay-members {
+  background: linear-gradient(135deg, rgba(68,86,167,0.45) 0%, rgba(68,86,167,0.35) 62%, rgba(0,0,0,0.75) 100%);
+}
+.overlay-footer { background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.88) 50%, rgba(68,86,167,0.15) 100%); }
+
+/* 深色模式footer遮罩 */
+html.dark .overlay-footer {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.85) 50%, rgba(68,86,167,0.1) 100%);
+}
+
+/* Footer borders */
+.footer-border { border-color: rgba(68,86,167,0.15); }
+
+/* Gradients */
+.gradient-primary { background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light)); }
+.gradient-primary-reverse { background: linear-gradient(90deg, var(--color-primary-light), var(--color-primary)); }

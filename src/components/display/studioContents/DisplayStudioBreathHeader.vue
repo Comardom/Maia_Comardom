@@ -26,6 +26,7 @@ const isMobile = useMediaQuery('(max-width: 48rem)');
 					<span class="title-text">河南大学网站工作室</span>
 				</div>
 				<div class="theme-toggle-wrapper">
+					<a href="/nihilum" id="forum">前往论坛</a>
 					<PlasticThemeToggleIsland client:load />
 				</div>
 			</div>
@@ -39,7 +40,7 @@ const isMobile = useMediaQuery('(max-width: 48rem)');
 					<a href=""><img :src="logoSrc" alt="logo" class="logo" /></a>
 				</div>
 				<div class="actions-right">
-					<UmbrellaMenu client:load forumUrl="/forum" examUrl="/exam" deptHubUrl="/departments" />
+					<UmbrellaMenu client:load forumUrl="/nihilum" examUrl="/nihilum" deptHubUrl="/nihilum" />
 				</div>
 			</div>
 		
@@ -71,7 +72,24 @@ const isMobile = useMediaQuery('(max-width: 48rem)');
 }
 .top-bar.light { background:#f5f5f5; color:#333; }
 .top-bar.dark  { background:#2c2c2c; color:#f0f0f0; }
+#forum{
+	padding-right: 1rem;
+	margin-right: 1rem;
+	font-size: 0.8rem;
+	padding-top:0.1rem;
+}
+a {
+	color: inherit; /* 继承父元素的文本颜色 */
+	text-decoration: none; /* 移除下划线 */
+}
 
+a:hover, /* 鼠标悬停时的样式 */
+a:visited, /* 访问过的链接样式 */
+a:active, /* 链接被点击时的样式 */
+a:link { /* 未访问过的链接样式 */
+	color: inherit; /* 再次确保继承颜色 */
+	text-decoration: none; /* 再次确保没有下划线 */
+}
 /* desktop layout: 保持你原来的样式 */
 .top-bar-content { width:100%; display:flex; align-items:center; justify-content:space-between; }
 

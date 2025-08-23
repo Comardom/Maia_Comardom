@@ -10,9 +10,9 @@ const props = withDefaults(defineProps<{
 	examUrl: string;
 	deptHubUrl: string;
 }>(), {
-	forumUrl: '/forum',
-	examUrl: '/exam',
-	deptHubUrl: '/departments',
+	forumUrl: '/nihilum',
+	examUrl: '/nihilum',
+	deptHubUrl: '/nihilum',
 })
 
 const { isDark } = useThemeObserver()
@@ -83,11 +83,11 @@ onUnmounted(() => {
 		
 		<!-- 下拉弹窗（垂直） -->
 		<div v-if="open" class="popover" role="menu" aria-orientation="vertical">
-			<button class="pop-item" @click="triggerFloat">触发漂浮</button>
-			<button class="pop-item" @click="toggleShake">{{ shakeEnabled ? '關閉搖一搖' : '開啟搖一搖' }}</button>
-			<button class="pop-item" @click="goto(forumUrl)">前往論壇</button>
-			<button class="pop-item" @click="goto(examUrl)">考試系統</button>
-			<button class="pop-item" @click="goto(deptHubUrl)">部門跳轉</button>
+			<button class="pop-item" @click="toggleShake">{{ shakeEnabled ? '关闭摇一摇' : '开启摇一摇' }}</button>
+			<button class="pop-item" @click="triggerFloat">强制触发漂浮</button>
+			<button class="pop-item" @click="goto(forumUrl)">前往论坛</button>
+			<button class="pop-item" @click="goto(examUrl)">考试系统</button>
+<!--			<button class="pop-item" @click="goto(deptHubUrl)"></button>-->
 		</div>
 		
 		<!-- 权限被拒绝时的提示 -->
@@ -136,7 +136,7 @@ onUnmounted(() => {
 	gap: 0.25rem;
 	transform-origin: top right;
 	animation: pop-in .16s ease;
-	background-color: var(--bg-card); /* 确保背景色 */
+	background-color: var(--theme-bg-button); /* 确保背景色 */
 }
 
 /* 动画 */

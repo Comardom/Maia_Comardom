@@ -1,0 +1,35 @@
+---
+import IsDarkOrNotLayout from "../layouts/IsDarkOrNotLayout.astro";
+import "/src/styles/global.css";
+// import "/src/styles/adminAndAuth/adminPanelUniversalBackground.css";
+import ThemeToggleIsland from '../components/ThemeToggleIsland.vue';
+---
+<IsDarkOrNotLayout title="nihilum">
+    <ThemeToggleIsland client:load />
+    <div class="container">
+        <img src="/multiply.svg" alt="nihilum" />
+        <div>很抱歉，此页面暂不开放。</div>
+        <div>很抱歉，此頁面暫不開放。</div>
+        <div>申し訳ございません、このページは一時的にご利用いただけません。</div>
+        <div>We are sorry, this page is temporarily unavailable.</div>
+        <div>Nobis paenitet, haec pagina ad tempus non patet.</div>
+    </div>
+</IsDarkOrNotLayout>
+<style>
+    /* 确保 html 和 body 占据整个视窗的高度 */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 确保父容器 .container 占据父元素（body）的全部高度 */
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+    }
+</style>

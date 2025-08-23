@@ -1,229 +1,283 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, nextTick, computed } from 'vue'
-import type { TimelineEvent } from './scripts/timelineData'
 import { useThemeObserver } from '../../../utils/useThemeObserver'
 
 /**
  * Props: events - array of timeline events
+ * 完整优化版：入场动画可稳定触发；待机波动动画不卡顿
  */
 const props = defineProps<{ events: { year: string; title: string; description: string }[] }>()
 
-// 主题：选择配色
+// 主题
 const { isDark } = useThemeObserver()
 
-// refs
+// -------------------- REFS & STATE --------------------
 const root = ref<HTMLElement | null>(null)
 const svgEl = ref<SVGSVGElement | null>(null)
 const pathEl = ref<SVGPathElement | null>(null)
+const pathGlowEl = ref<SVGPathElement | null>(null)
 
-// reactive state: path d, node positions (px)
-const pathD = ref('')
 const nodes = ref<{ x: number; y: number }[]>([])
+const isInitialized = ref(false)
 
 let ro: ResizeObserver | null = null
-// Animation state
-// 動畫狀態
-let animationFrameId: number | null = null;
-let lastTimestamp = 0;
-const waveOffset = ref(0);
-const waveSpeed = 0.0002; // Adjust for wave speed // 調整波浪速度
-const waveAmplitude = 10; // Adjust for wave height // 調整波浪高度
-const waveSeed = Math.random() * 1000; // A random seed for unique wave pattern // 隨機種子用於獨特的波浪模式
+let animationFrameId: number | null = null
+let lastTimestamp = 0
+let waveOffset = 0 // ❗ 非响应式，避免每帧触发 Vue 更新
 
+// 速度与随机种子
+const WAVE_SPEED = 0.0005
+const WAVE_SEED = Math.random() * 1000
 
-// 修正后的颜色计算属性
-// 使用更通用的颜色名称
-const timelineLineColor = computed(() => (isDark.value ? '#E6EEF8' : '#0b3d91'));
-const nodeDotFill = computed(() => (isDark.value ? '#333' : '#fff'));
-const nodeDotStroke = computed(() => (isDark.value ? '#E6EEF8' : '#0b3d91'));
-const cardBg = computed(() => (isDark.value ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'));
-const cardTitleColor = computed(() => (isDark.value ? '#A1C8E5' : '#1a4f89'));
-const cardDescColor = computed(() => (isDark.value ? '#C6C6C6' : '#555'));
+// 运行时根据容器宽度决定尖峰数量（性能友好）
+let dynamicSpikes = 3
 
-function generateD(baseXs: number[], baseYs: number[], height: number, offset: number) {
-	if (baseXs.length === 0) return '';
+// -------------------- COLORS --------------------
+const timelineGradientStart = computed(() => (isDark.value ? '#00F260' : '#43C6AC'))
+const timelineGradientEnd   = computed(() => (isDark.value ? '#0575E6' : '#191654'))
+const nodeDotFill           = computed(() => (isDark.value ? '#0b1320'  : '#FFFFFF'))
+const nodeDotStroke         = computed(() => (isDark.value ? '#00F260' : '#43C6AC'))
+const cardBg                = computed(() => (isDark.value ? 'rgba(0, 30, 60, 0.42)' : 'rgba(255, 255, 255, 0.72)'))
+const cardTitleColor        = computed(() => (isDark.value ? '#E2E8F0' : '#1A202C'))
+const cardDescColor         = computed(() => (isDark.value ? '#9FB0C2' : '#4A5568'))
+const titleColor            = computed(() => (isDark.value ? '#CBD5E0' : '#2D3748'))
+
+// -------------------- CORE PATH GEN --------------------
+/** 生成“数字流光”路径 */
+function generateDigitalStreamD(baseXs: number[], baseYs: number[], offset: number, numSpikes: number) {
+	if (baseXs.length < 2) return ''
 	let d = `M ${baseXs[0].toFixed(1)} ${baseYs[0].toFixed(1)}`
 	for (let i = 1; i < baseXs.length; i++) {
-		const x0 = baseXs[i - 1], y0 = baseYs[i - 1]
-		const x1 = baseXs[i], y1 = baseYs[i]
-		const dx = (x1 - x0)
+		const p0 = { x: baseXs[i - 1], y: baseYs[i - 1] }
+		const p1 = { x: baseXs[i],     y: baseYs[i] }
+		const dx = p1.x - p0.x
+		const dy = p1.y - p0.y
+		const segmentLength = Math.sqrt(dx * dx + dy * dy) || 1
+		const nx = -dy / segmentLength
+		const ny =  dx / segmentLength
 		
-		// Combine multiple sine waves for a more organic, flowing effect
-		// 結合多個正弦波以獲得更自然的流動效果
-		// Removed random "timbre" from inside the loop to prevent jitter
-		// 移除了循環內的隨機“音色”，以防止顫抖
-		const wave1 = Math.sin((x0 / 100) + offset + waveSeed) * waveAmplitude;
-		const wave2 = Math.sin((x0 / 50) + offset * 0.5 + waveSeed * 2) * (waveAmplitude * 0.4);
-		const wave3 = Math.sin((x0 / 25) + offset * 1.5 + waveSeed * 3) * (waveAmplitude * 0.2);
-		const totalWave = wave1 + wave2 + wave3;
+		const points = [p0]
+		const spikes = Math.max(0, Math.min(numSpikes|0, 3)) // 上限 3
+		for (let j = 1; j <= spikes; j++) {
+			const posOnSegment = (j + (Math.sin(offset * 2 + j) * 0.2)) / (spikes + 1)
+			// 适度降低峰值，移动端更稳
+			const spikeHeight = (Math.sin(offset + WAVE_SEED + p0.x / 50 + j) * 0.5 + 0.5) * 30
+			points.push({
+				x: p0.x + dx * posOnSegment + nx * spikeHeight,
+				y: p0.y + dy * posOnSegment + ny * spikeHeight,
+			})
+		}
+		points.push(p1)
 		
-		const cp1x = (x0 + dx * 0.35)
-		const cp1y = y0 + totalWave
-		
-		const cp2x = (x1 - dx * 0.35)
-		const cp2y = y1 - totalWave
-		
-		d += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${x1.toFixed(1)} ${y1.toFixed(1)}`
+		for (let k = 0; k < points.length - 1; k++) {
+			const a = points[k], b = points[k + 1]
+			const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
+			d += ` Q ${a.x.toFixed(1)} ${a.y.toFixed(1)}, ${mid.x.toFixed(1)} ${mid.y.toFixed(1)}`
+		}
+		d += ` L ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}`
 	}
-	return d;
+	return d
 }
 
-// recompute path when container size or events change
+/** 首帧/尺寸变化时，根据 nodes 写入路径与 dash 长度 */
+function paintInitialPath() {
+	if (!pathEl.value || nodes.value.length === 0) return
+	const xs = nodes.value.map(n => n.x)
+	const ys = nodes.value.map(n => n.y)
+	const d0 = generateDigitalStreamD(xs, ys, 0, dynamicSpikes)
+	pathEl.value.setAttribute('d', d0)
+	pathGlowEl.value?.setAttribute('d', d0)
+	// 设置 stroke 长度，确保入场描边动画真实有效
+	try {
+		const len = pathEl.value.getTotalLength()
+		pathEl.value.style.strokeDasharray = `${len}`
+		pathEl.value.style.strokeDashoffset = `${len}`
+	} catch { /* 某些极端情况下 getTotalLength 可能抛错，忽略 */ }
+}
+
+// -------------------- ANIMATION LOOP（非响应式） --------------------
+const animateWave = (timestamp: number) => {
+	if (!lastTimestamp) lastTimestamp = timestamp
+	const deltaTime = timestamp - lastTimestamp
+	lastTimestamp = timestamp
+	
+	// 如果用户减少动态，则不做待机动画
+	const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+	if (!reduce) {
+		waveOffset += deltaTime * WAVE_SPEED
+		if (nodes.value.length && pathEl.value) {
+			const xs = nodes.value.map(n => n.x)
+			const ys = nodes.value.map(n => n.y)
+			const d = generateDigitalStreamD(xs, ys, waveOffset, dynamicSpikes)
+			pathEl.value.setAttribute('d', d)
+			pathGlowEl.value?.setAttribute('d', d)
+		}
+	}
+	
+	animationFrameId = requestAnimationFrame(animateWave)
+}
+
+// -------------------- LAYOUT & LIFECYCLE --------------------
 async function recompute() {
 	if (!root.value) return
 	await nextTick()
+	if (!root.value) return
+	
 	const rect = root.value.getBoundingClientRect()
-	// 移除最大寬度限制，讓時間線自由鋪滿
-	const width = Math.max(200, rect.width);
+	const width  = Math.max(200, rect.width)
 	const height = Math.max(120, rect.height)
 	
-	// 左右內邊距使用固定像素值
-	const marginX = 50;
+	// 根据宽度自适应尖峰数：窄屏更省电
+	dynamicSpikes = width < 720 ? 1 : 3
+	
+	const marginX = 60
 	const left = marginX
 	const right = width - marginX
 	const count = Math.max(1, props.events.length)
 	const available = right - left
 	
-	// x positions equally spaced
 	const xs: number[] = []
-	for (let i = 0; i < count; i++) {
-		const x = left + (available * (i / Math.max(1, count - 1)))
-		xs.push(x)
-	}
+	if (count === 1) xs.push(width / 2)
+	else for (let i = 0; i < count; i++) xs.push(left + (available * (i / (count - 1))))
 	
-	// y positions: 蛇形：交替在上 / 下 兩條基線
-	const topY = Math.max(40, height * 0.22)
-	const bottomY = Math.max(80, height * 0.68)
-	const ys: number[] = xs.map((_, i) => (i % 2 === 0 ? topY : bottomY))
+	const topY = Math.max(40, height * 0.27)
+	const botY = Math.max(80, height * 0.73)
+	const ys: number[] = xs.map((_, i) => (i % 2 === 0 ? topY : botY))
 	
-	pathD.value = generateD(xs, ys, height, waveOffset.value);
 	nodes.value = xs.map((x, i) => ({ x, y: ys[i] }))
 	
-	// update SVG viewport / viewBox
 	if (svgEl.value) {
-		svgEl.value.setAttribute('width', `${width}`)
+		svgEl.value.setAttribute('width',  `${width}`)
 		svgEl.value.setAttribute('height', `${height}`)
 		svgEl.value.setAttribute('viewBox', `0 0 ${width} ${height}`)
 	}
+	
+	// 初次绘制路径 + 计算 dash
+	await nextTick()
+	paintInitialPath()
 }
 
-// continuous wave animation loop
-// 持續波動動畫循環
-const animateWave = (timestamp: number) => {
-	if (!lastTimestamp) lastTimestamp = timestamp;
-	const deltaTime = timestamp - lastTimestamp;
-	lastTimestamp = timestamp;
-	
-	waveOffset.value += deltaTime * waveSpeed;
-	
-	const rect = root.value?.getBoundingClientRect();
-	if (rect) {
-		const width = Math.max(200, rect.width);
-		const height = Math.max(120, rect.height)
-		const marginX = 50;
-		const left = marginX
-		const right = width - marginX
-		const count = Math.max(1, props.events.length)
-		const available = right - left
-		const xs: number[] = []
-		for (let i = 0; i < count; i++) {
-			const x = left + (available * (i / Math.max(1, count - 1)))
-			xs.push(x)
-		}
-		const topY = Math.max(40, height * 0.22)
-		const bottomY = Math.max(80, height * 0.68)
-		const ys: number[] = xs.map((_, i) => (i % 2 === 0 ? topY : bottomY))
-		
-		// Update path without transition
-		pathD.value = generateD(xs, ys, height, waveOffset.value);
-	}
-	animationFrameId = requestAnimationFrame(animateWave);
-}
-
-// ResizeObserver to recompute on container resize
 onMounted(() => {
 	if (!root.value) return
 	recompute()
-	ro = new ResizeObserver(() => recompute())
+	
+	// 监听尺寸
+	ro = new ResizeObserver(() => {
+		recompute()
+	})
 	ro.observe(root.value)
 	
-	// Initial path drawing animation
-	// 初始路徑繪製動畫
-	if (pathEl.value) {
-		const path = pathEl.value;
-		const total = path.getTotalLength();
-		path.style.strokeDasharray = `${total}`;
-		path.style.strokeDashoffset = `${total}`;
-		void path.getBoundingClientRect();
-		path.style.transition = `stroke-dashoffset 2s ease-in-out`;
+	// ⭐ 确保入场动画一定触发：nextTick + 双 rAF，等首帧布局/样式生效后再加 class
+	nextTick(() => {
 		requestAnimationFrame(() => {
-			path.style.strokeDashoffset = '0';
-		});
-	}
+			requestAnimationFrame(() => {
+				isInitialized.value = true
+			})
+		})
+	})
 	
-	// Start wave animation after initial draw
-	// 初始繪製後開始波動動畫
+	// 入场动画结束后再启动待机动画（避免竞争）
+	const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+	const startStandbyAfter = reduce ? 0 : 3500
 	setTimeout(() => {
-		animationFrameId = requestAnimationFrame(animateWave);
-	}, 2500); // Wait for the initial draw to finish // 等待初始繪製完成
+		if (animationFrameId == null) {
+			animationFrameId = requestAnimationFrame(animateWave)
+		}
+	}, startStandbyAfter)
 })
 
-// cleanup
 onUnmounted(() => {
 	if (ro && root.value) ro.unobserve(root.value)
 	ro = null
-	if (animationFrameId) {
-		cancelAnimationFrame(animationFrameId);
-	}
+	if (animationFrameId) cancelAnimationFrame(animationFrameId)
+	animationFrameId = null
 })
 
-// recompute when events array changes externally
-watch(() => props.events, () => {
-	recompute();
-	// Restart animation when events change
-	// 事件改變時重新啟動動畫
-	if (pathEl.value) {
-		const path = pathEl.value;
-		const total = path.getTotalLength();
-		path.style.transition = 'none'; // Disable transition for reset // 禁用過渡以進行重置
-		path.style.strokeDashoffset = `${total}`;
-		// Re-enable transition and animate
-		setTimeout(() => {
-			path.style.transition = `stroke-dashoffset 2s ease-in-out`;
-			path.style.strokeDashoffset = '0';
-		}, 50); // Small delay to force reflow // 小延遲以強制重繪
-	}
-}, { deep: true })
+watch(
+	() => props.events,
+	() => {
+		// 数据变化：重算布局 & 重放入场动画
+		recompute()
+		isInitialized.value = false
+		nextTick(() => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					isInitialized.value = true
+				})
+			})
+		})
+	},
+	{ deep: true }
+)
 </script>
 
 <template>
-	<div ref="root" class="snake-root" aria-hidden="false">
-		<!-- 新增主標題 -->
-		<h2 class="timeline-title">重要事件時間線</h2>
-		<!-- SVG 蛇形路徑 -->
-		<svg ref="svg" class="snake-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMin meet">
-			<path ref="pathEl" :d="pathD" :stroke="timelineLineColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+	<div ref="root" :class="['snake-root', { 'initialized': isInitialized }]" aria-hidden="false">
+		<!-- <h2 class="timeline-title" :style="{ color: titleColor }">重要事件時間線</h2> -->
+		
+		<svg ref="svgEl" class="snake-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+			<defs>
+				<linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" :stop-color="timelineGradientStart" />
+					<stop offset="100%" :stop-color="timelineGradientEnd" />
+				</linearGradient>
+				<!-- 降低模糊强度，移动端更顺滑 -->
+				<filter id="glow">
+					<feGaussianBlur stdDeviation="2.2" result="coloredBlur" />
+					<feMerge>
+						<feMergeNode in="coloredBlur" />
+						<feMergeNode in="SourceGraphic" />
+					</feMerge>
+				</filter>
+			</defs>
+			
+			<path
+				ref="pathGlowEl"
+				class="path-glow"
+				:d="''"
+			stroke="url(#line-gradient)"
+			stroke-width="6"
+			fill="none"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			/>
+			
+			<path
+				ref="pathEl"
+				class="main-path"
+				:d="''"
+			stroke="url(#line-gradient)"
+			stroke-width="3"
+			fill="none"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			/>
 		</svg>
 		
-		<!-- 節點 -->
 		<div class="nodes-layer">
 			<div
 				v-for="(ev, i) in props.events"
-				:key="i"
+				:key="`event-${i}`"
 				class="node"
 				:style="{
           left: (nodes[i] ? nodes[i].x + 'px' : '-9999px'),
-          top: (nodes[i] ? nodes[i].y + 'px' : '-9999px'),
-          transform: nodes[i] ? 'translate(-50%, ' + (i % 2 === 0 ? '-110%' : '0') + ')' : 'none'
+          top:  (nodes[i] ? nodes[i].y + 'px' : '-9999px'),
+          '--final-translate-y': (i % 2 === 0 ? '-115%' : '15%'),
+          'animation-delay': `${1.5 + i * 0.1}s`
         }"
 				role="group"
 				:aria-label="`${ev.year} ${ev.title}`"
 			>
-				<div class="node-dot" :style="{ backgroundColor: nodeDotFill, borderColor: nodeDotStroke }" />
-				<div class="node-card" :style="{ backgroundColor: cardBg, color: cardTitleColor }">
-					<div class="node-year">{{ ev.year }}</div>
-					<div class="node-title">{{ ev.title }}</div>
-					<div class="node-desc" :style="{ color: cardDescColor }">{{ ev.description }}</div>
+				<div class="node-dot"
+				     :style="{
+               backgroundColor: nodeDotFill,
+               borderColor: nodeDotStroke,
+               animationDelay: `${2 + i * 0.15}s`
+             }" />
+				<div class="node-card" :style="{ backgroundColor: cardBg }">
+					<div class="node-year"  :style="{ color: cardTitleColor }">{{ ev.year }}</div>
+					<div class="node-title" :style="{ color: cardTitleColor }">{{ ev.title }}</div>
+					<div class="node-desc"  :style="{ color: cardDescColor }">{{ ev.description }}</div>
 				</div>
 			</div>
 		</div>
@@ -231,6 +285,7 @@ watch(() => props.events, () => {
 </template>
 
 <style scoped>
+/* --- 基础与布局 --- */
 .snake-root {
 	width: 100%;
 	height: 100%;
@@ -238,85 +293,123 @@ watch(() => props.events, () => {
 	box-sizing: border-box;
 	overflow: hidden;
 	-webkit-font-smoothing: antialiased;
-	padding-top: 4rem; /* 增加頂部空間以容納標題 */
+	/*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;*/
+	padding-top: 4rem;
+	/*background-color: var(--bg-color, #f0f2f5);*/
 }
+.dark .snake-root { --bg-color: #0d1117; }
 
-/* 新增標題樣式 */
+.snake-svg, .nodes-layer {
+	position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+	pointer-events: none;
+}
+.nodes-layer { pointer-events: none; }
+
+/* --- 入场动画 --- */
 .timeline-title {
 	position: absolute;
-	top: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 1.5rem;
-	font-weight: 700;
-	text-align: center;
-	width: 100%;
+	top: 1rem; left: 50%;
+	font-size: 1.5rem; font-weight: 700;
+	opacity: 0; transform: translate(-50%, -20px);
+	transition: color 0.3s ease;
+}
+.initialized .timeline-title { animation: fade-in-down 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s forwards; }
+
+/* 路径描边入场（stroke 长度在 JS 中动态设置） */
+.main-path {
+	/* 这两个值由 JS 初始化：strokeDasharray / strokeDashoffset */
+}
+.initialized .main-path {
+	animation: draw-path 2s cubic-bezier(0.65,0,0.35,1) 0.5s forwards;
 }
 
-.snake-svg {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-}
-
-.nodes-layer {
-	position: absolute;
-	left: 0; top: 0; width: 100%; height: 100%;
-	pointer-events: none;
-}
-
+/* 节点入场：弹跳 */
 .node {
 	position: absolute;
 	pointer-events: auto;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	gap: 0.65rem;
 	width: 220px;
 	max-width: 30vw;
-	box-sizing: border-box;
-	/* 新增過渡效果 */
-	transition: all 0.2s ease-in-out;
+	opacity: 0;
+	/*noinspection CssUnresolvedCustomProperty*/
+	transform: scale(0.5) translate(-50%, var(--final-translate-y, -50%));
+}
+.initialized .node {
+	animation: bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.node:hover {
-	z-index: 10;
+/* --- 待机动画 --- */
+/* 辉光层（滤镜降低强度） */
+.path-glow { filter: url(#glow); opacity: 0; }
+.initialized .path-glow {
+	animation: standby-glow 4s ease-in-out 3s infinite;
 }
 
+/* 节点圆点脉冲（较轻） */
 .node-dot {
-	width: 12px;
-	height: 12px;
+	width: 14px; height: 14px;
 	border-radius: 50%;
-	border: 2px solid;
-	box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+	border: 3px solid;
+	box-shadow: 0 0 10px rgba(0, 242, 96, 0);
 	flex-shrink: 0;
-	transition: all 0.2s ease-in-out;
+	z-index: 1; margin: 8px 0;
+	transition: all 0.3s ease;
+}
+.initialized .node-dot { animation: standby-pulse 3s infinite; }
+
+/* --- 关键帧 --- */
+@keyframes fade-in-down { to { opacity: 1; transform: translate(-50%, 0); } }
+
+@keyframes draw-path { to { stroke-dashoffset: 0; } }
+
+@keyframes bounce-in {
+	to { opacity: 1; /*noinspection CssUnresolvedCustomProperty*/
+		transform: scale(1) translate(-50%, var(--final-translate-y)); }
 }
 
-.node:hover .node-dot {
-	box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+@keyframes standby-glow {
+	0%, 100% { opacity: 0.35; }
+	50%      { opacity: 0.75; }
 }
 
+@keyframes standby-pulse {
+	0%, 100% { transform: scale(1);    box-shadow: 0 0 10px rgba(0, 242, 96, 0); }
+	50%      { transform: scale(1.12); box-shadow: 0 0 16px rgba(0, 242, 96, 0.44); }
+}
+
+/* --- 其他样式 --- */
 .node-card {
-	padding: 0.45rem 0.6rem;
-	border-radius: 8px;
-	box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-	font-size: 0.85rem;
-	line-height: 1.25;
-	transition: all 0.2s ease-in-out;
+	padding: 0.75rem 1rem;
+	border-radius: 12px;
+	backdrop-filter: blur(10px) saturate(160%);
+	-webkit-backdrop-filter: blur(10px) saturate(160%);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+	border: 1px solid rgba(255, 255, 255, 0.16);
+	transition: all 0.3s ease;
+	width: 100%;
+}
+.node:hover .node-card { transform: translateY(-5px); box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.18); z-index: 50;}
+
+.node:nth-child(odd) { flex-direction: column-reverse; }
+
+.node-year  { font-weight: 700; font-size: 0.8rem; margin-bottom: 0.25rem; opacity: 0.85; }
+.node-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.node-desc  { font-size: 0.85rem; font-weight: 400; }
+
+/* 响应式（移动端更小的卡片） */
+@media (max-width: 768px) {
+	.node { width: 180px; max-width: 40vw; }
 }
 
-.node:hover .node-card {
-	box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.node-year { font-weight: 700; font-size: 0.82rem; margin-bottom: 0.15rem; }
-.node-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
-.node-desc { font-size: 0.8rem; }
-
-@media (max-width: 68rem) {
-	.node { width: 200px; max-width: 36vw; }
+/* 减少动态：系统偏好 */
+@media (prefers-reduced-motion: reduce) {
+	.initialized .main-path,
+	.initialized .node,
+	.initialized .path-glow,
+	.initialized .node-dot {
+		animation: none !important;
+	}
 }
 </style>

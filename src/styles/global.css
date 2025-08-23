@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
     --theme-bg: repeating-linear-gradient( to right, #f0f0f0, #f0f0f0 2px, #ffffff 1px, #ffffff 4px );
     --theme-color: #222;
@@ -6,6 +9,10 @@
     --theme-bg-button-hover: #ddd;
     --theme-border-button: #ccc;
     --theme-color-button: #222;
+    --camera-border-color: rgba(0, 0, 0, 0.85);
+    /* 相机边框颜色 - 浅色模式黑色 */
+    --camera-corner-color: rgba(0, 0, 0, 0.7);
+    /* 相机角落颜色 - 浅色模式黑色 */
 }
 .dark {
     --theme-bg: repeating-linear-gradient( to right, #1a1a1a, #1a1a1a 2px, #2b2b2b 1px, #2b2b2b 4px );
@@ -14,7 +21,12 @@
     --theme-bg-button: #2b2b2b;
     --theme-bg-button-hover: #3c3c3c;
     --theme-border-button: #666;
-    --theme-color-button: #e0e0e0; }
+    --theme-color-button: #e0e0e0;
+    --camera-border-color: rgba(255, 255, 255, 0.85);
+    /* 相机边框颜色 - 暗色模式白色 */
+    --camera-corner-color: rgba(255, 255, 255, 0.7);
+    /* 相机角落颜色 - 暗色模式白色 */
+}
 html, body {
     background: var(--theme-bg);
     color: var(--theme-color);

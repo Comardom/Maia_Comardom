@@ -1,0 +1,45 @@
+---
+const { title = '河南大学网站工作室' } = Astro.props;
+import IsDarkOrNotWithVerticalScrollLayout from "../../layouts/IsDarkOrNotWithVerticalScrollLayout.astro"
+import "/src/styles/global.css";
+import "/src/styles/display/studio.css"
+import DisplayStudioFooterInZHTW from "../../components/display/studioContents/DispalyStudioFooterInZHTW.vue"
+//监测并改变data-section
+import SnapObserver from "../../components/display/studioContents/SnapObserver.vue"
+//检测设备UA
+import DeviceDetector from "../../components/display/studioContents/DeviceDetector.vue"
+//动画
+import PageAnimator from "../../components/PageAnimator.vue";
+//侧边切换按钮
+import SideNav from "../../components/display/studioContents/SideNav.vue";
+import DisplayStudioBreathHeaderInZHTW from "../../components/display/studioContents/DisplayStudioBreathHeaderInZHTW.vue";
+import FullScreenPhotoInZHTW from "../../components/display/studioContents/FullScreenPhotoInZHTW.vue";
+import DisplayStudioDepartmentsIntroInZHTW from "../../components/display/studioContents/DisplayStudioDepartmentsIntroInZHTW.vue";
+import DisplayStudioTimelineInZHTW from "../../components/display/studioContents/DisplayStudioTimelineInZHTW.vue";
+---
+<IsDarkOrNotWithVerticalScrollLayout title={title}>
+    <SnapObserver client:load />
+    <DeviceDetector client:load />
+    <PageAnimator client:load />
+    <!--<SideNav client:visible />-->
+    <div class="snap-wrapper">
+        <DisplayStudioBreathHeaderInZHTW client:load />
+        <div class="snap-section" id="Prologue" data-section="1">
+            <FullScreenPhotoInZHTW client:load />
+        </div>
+        <!--<div class="snap-section" id="section-2" data-section="2">-->
+        <!--    <BlankPage client:load message="2" />-->
+        <!--</div>-->
+        <div class="snap-section" id="Symphony" data-section="2">
+            <DisplayStudioDepartmentsIntroInZHTW client:load />
+        </div>
+        <div class="snap-section" id="Timeline" data-section="3">
+            <DisplayStudioTimelineInZHTW client:load />
+        </div>
+
+        <div class="snap-section" id="Epilogue" data-section="4">
+            <DisplayStudioFooterInZHTW client:idle />
+        </div>
+    </div>
+</IsDarkOrNotWithVerticalScrollLayout>
+<!--const current = document.getElementById("snap-state")?.getAttribute("data-current-section");-->

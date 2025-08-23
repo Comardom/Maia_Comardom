@@ -5,7 +5,7 @@ body{
     overflow: hidden;
 }
 main{
-    position: relative;//给result提供定位点
+    position: relative;/*给result提供定位点*/
     display: flex;
     justify-content: center;
 }

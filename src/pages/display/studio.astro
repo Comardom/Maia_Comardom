@@ -25,20 +25,21 @@ import SideNav from "../../components/display/studioContents/SideNav.vue";
     <!--<SideNav client:visible />-->
     <div class="snap-wrapper">
         <DisplayStudioBreathHeader client:load />
-        <div class="snap-section" id="section-1" data-section="1">
+        <div class="snap-section" id="Prologue" data-section="1">
             <FullScreenPhoto client:load />
         </div>
         <!--<div class="snap-section" id="section-2" data-section="2">-->
         <!--    <BlankPage client:load message="2" />-->
         <!--</div>-->
-        <div class="snap-section" id="section-3" data-section="3">
-            <DisplayStudioTimeline client:load />
-        </div>
-        <div class="snap-section" id="section-4" data-section="4">
+        <div class="snap-section" id="Symphony" data-section="2">
             <DisplayStudioDepartmentsIntro client:load />
         </div>
-        <div class="snap-section" id="section-5" data-section="5">
-            <DisplayStudioFooter client:load />
+        <div class="snap-section" id="Timeline" data-section="3">
+            <DisplayStudioTimeline client:load />
+        </div>
+
+        <div class="snap-section" id="Epilogue" data-section="4">
+            <DisplayStudioFooter client:idle />
         </div>
     </div>
 </IsDarkOrNotWithVerticalScrollLayout>

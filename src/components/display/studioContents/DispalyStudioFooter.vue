@@ -16,9 +16,16 @@ defineProps<{
 			<br />
 			<a href="https://news.henu.edu.cn">河南大学新闻网</a>
 			<br />
+			<a href="https://i.henu.edu.cn">河大在线</a>
+			<br />
 			<a href="https://space.bilibili.com/378145694">bilibili</a>
 			<br />
 			<p>© 2025 河南大学网站工作室 | HENU Web Studio. All rights reserved.</p>
+			<br />
+			<br />
+			<a href="/display/studioInZHTW">臺繁頁面</a>
+			<br />
+			<a href="/display/studioInEnglish">Page in English</a>
 		</div>
 	</div>
 </template>

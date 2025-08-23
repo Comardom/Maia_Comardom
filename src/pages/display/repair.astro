@@ -1,0 +1,720 @@
+---
+// import "../../components/display/repairContents/scripts/repairTheme";
+// import "../../components/display/repairContents/scripts/repairMain";
+import "../../styles/display/repairMain.css";
+import "../../styles/display/repairTheme.css";
+import "../../styles/display/repairComponents.css";
+---
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>维修部 - 河南大学网站工作室</title>
+    <link rel="icon" type="image/svg+xml" href="/displayRepair/logo.svg">
+    <!--<link rel="stylesheet" href="../../styles/display/repairMain.css">-->
+    <!--<link rel="stylesheet" href="../../styles/display/repairTheme.css">-->
+    <!--<link rel="stylesheet" href="../../styles/display/repairComponents.css">-->
+</head>
+<body>
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="切换主题">
+            <span class="theme-icon sun">☀️</span>
+            <span class="theme-icon moon">🌙</span>
+        </button>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/displayRepair/logo.svg" alt="Logo" class="logo-img">
+                <span class="nav-title">河南大学网站工作室</span>
+                <span class="department-badge">维修部</span>
+            </div>
+            <div class="nav-links">
+                <a href="../display/studio" class="back-home-btn">返回首页</a>
+                <a href="#home" class="nav-link active">简介</a>
+                <a href="#about" class="nav-link">关于我们</a>
+                <a href="#services" class="nav-link">服务项目</a>
+                <a href="#join" class="nav-link">加入我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero hero-with-bg">
+        <img src="/displayRepair/main.png" alt="维修部主图" class="hero-main-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main">维修部</span>
+                    <span class="title-sub">专业电脑维修团队</span>
+                </h1>
+                <p class="hero-description">
+                    还在为电脑故障而烦恼吗？还在考虑他人求助电脑维修时无能为力吗？同学，
+                    身怀绝技，走遍天下都不怕，来维修部学习电脑维修知识吧！
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">立即加入</button>
+                    <button class="btn btn-secondary">了解更多</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">关于维修部</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>我们的使命</h3>
+                    <p>维修部致力于培养学生的电脑维修技能，帮助同学们解决各种电脑故障问题。我们相信掌握实用技能的重要性，让你从菜鸟蜕变为维修高手。</p>
+
+                    <h3>学习环境</h3>
+                    <p>拥有专业的维修工具和设备，资深学长学姐手把手教学，常备各种维修教学资料，让你在轻松愉悦的氛围中掌握电脑维修技术。</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">成功维修案例</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">活跃成员</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">年历史传承</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/hardware-repair.jpeg" alt="硬件维修" class="service-img">
+                        <div class="service-icon">🔧</div>
+                    </div>
+                    <h3>硬件维修</h3>
+                    <p>主板、显卡、内存条等硬件故障诊断与维修，让你的电脑重获新生</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/system-reinstall.jpeg" alt="系统重装" class="service-img">
+                        <div class="service-icon">💻</div>
+                    </div>
+                    <h3>系统重装</h3>
+                    <p>Windows、Linux系统安装与优化，解决各种系统问题</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/virus-cleanup.png" alt="病毒清理" class="service-img">
+                        <div class="service-icon">🛡️</div>
+                    </div>
+                    <h3>病毒清理</h3>
+                    <p>专业杀毒软件使用，彻底清除恶意软件和病毒</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/skill-training.png" alt="技能培训" class="service-img">
+                        <div class="service-icon">📚</div>
+                    </div>
+                    <h3>技能培训</h3>
+                    <p>从基础到进阶的维修技能教学，让你成为维修高手</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/fault-diagnosis.jpeg" alt="故障诊断" class="service-img">
+                        <div class="service-icon">🔍</div>
+                    </div>
+                    <h3>故障诊断</h3>
+                    <p>快速准确定位电脑问题，提供专业解决方案</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/displayRepair/services/performance-optimization.png" alt="性能优化" class="service-img">
+                        <div class="service-icon">⚡</div>
+                    </div>
+                    <h3>性能优化</h3>
+                    <p>提升电脑运行速度，优化系统性能表现</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join" class="join">
+        <div class="container">
+            <h2 class="section-title">加入维修部</h2>
+            <div class="join-content">
+                <div class="join-reasons">
+                    <h3>为什么选择我们？</h3>
+                    <ul class="reasons-list">
+                        <li>💪 学长学姐手把手教学，从零基础到维修高手</li>
+                        <li>🎯 玩转各种维修工具，成就实用技能</li>
+                        <li>🌟 在实践中学习，在学习中成长</li>
+                        <li>🤝 结识志同道合的朋友，共同进步</li>
+                        <li>📈 提升技术能力，为未来职业发展添砖加瓦</li>
+                    </ul>
+                </div>
+                <div class="join-form">
+                    <div class="qr-container">
+                        <h3>扫码加入维修部QQ群</h3>
+                        <div class="qr-code-wrapper">
+                            <div class="qr-code-image">
+                                <img src="/displayRepair/qq-group-qr.jpg" alt="维修部QQ群二维码" class="qr-image">
+                            </div>
+                            <p class="qr-instruction">🔍 使用手机QQ扫一扫</p>
+                            <p class="qr-note">扫描上方二维码即可加入维修部QQ群</p>
+                        </div>
+
+                        <div class="join-tips">
+                            <h4>💡 加群小贴士</h4>
+                            <ul>
+                                <li>进群后请修改群名片为：专业-年级-姓名</li>
+                                <li>群内有学长学姐解答各种技术问题</li>
+                                <li>定期分享维修教程和技术资料</li>
+                                <li>与志同道合的同学一起学习成长</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>河南大学网站工作室 - 维修部</h4>
+                    <p>让技术改变生活，让维修成为技能</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../display/studio">← 返回工作室首页</a></li>
+                        <li><a href="#home">简介</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">服务项目</a></li>
+                        <li><a href="#join">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>联系我们</h4>
+                    <p>📧 2934916168@qq.com</p>
+                    <p>📍 河南大学明伦校区</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 河南大学网站工作室维修部.</p>
+            </div>
+        </div>
+    </footer>
+<script is:inline>
+    // 主应用脚本
+    class RepairDepartmentApp {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            this.setupNavigation();
+            this.setupQRCode();
+            this.setupAnimations();
+            this.setupScrollEffects();
+        }
+
+        // 设置导航功能
+        setupNavigation() {
+            // 平滑滚动到锚点
+            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80; // 导航栏高度偏移
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+
+                        // 更新活跃状态
+                        this.updateActiveNavLink(link);
+                    }
+                });
+            });
+
+            // 滚动时更新导航状态
+            window.addEventListener('scroll', () => {
+                this.updateNavOnScroll();
+            });
+        }
+
+        // 更新活跃的导航链接
+        updateActiveNavLink(activeLink) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            activeLink.classList.add('active');
+        }
+
+        // 滚动时更新导航状态
+        updateNavOnScroll() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                    if (correspondingLink) {
+                        this.updateActiveNavLink(correspondingLink);
+                    }
+                }
+            });
+        }
+
+        // 设置二维码交互
+        setupQRCode() {
+            // 为二维码添加交互效果
+            const qrImage = document.querySelector('.qr-code-image');
+            if (qrImage) {
+                qrImage.addEventListener('click', () => {
+                    this.showModal('扫码说明', `
+                    <div style="text-align: center;">
+                        <div style="margin-bottom: 1.5rem; display: inline-block;">
+                            <img src="/displayRepair/qq-group-qr.jpg" alt="维修部QQ群二维码" 
+                                 style="max-width: 300px; max-height: 300px; width: auto; height: auto; 
+                                        border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                                        object-fit: contain; display: block;">
+                        </div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>🔍 使用手机QQ扫描二维码</strong></p>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                            1. 打开手机QQ<br>
+                            2. 点击右上角"+"号<br>
+                            3. 选择"扫一扫"<br>
+                            4. 对准二维码扫描即可加群
+                        </p>
+                    </div>
+                `);
+                });
+
+                // 添加悬停提示
+                qrImage.style.cursor = 'pointer';
+                qrImage.title = '点击查看扫码说明';
+            }
+        }
+
+        // 显示简单提示
+        showToast(message) {
+            // 移除现有提示
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // 创建提示元素
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 2000;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+
+            document.body.appendChild(toast);
+
+            // 显示动画
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+
+            // 自动隐藏
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // 设置动画效果
+        setupAnimations() {
+            // 观察器用于触发进入动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            // 为需要动画的元素添加观察
+            const animateElements = document.querySelectorAll(
+                '.service-card, .stat-item, .about-text, .join-reasons, .form-container'
+            );
+
+            animateElements.forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+
+            // 添加动画CSS类
+            this.addAnimationStyles();
+        }
+
+        // 添加动画样式
+        addAnimationStyles() {
+            const style = document.createElement('style');
+            style.textContent = `
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s ease;
+            }
+            
+            .animate-on-scroll.animate-in {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .service-card.animate-on-scroll {
+                transition-delay: 0.1s;
+            }
+            
+            .service-card:nth-child(2).animate-on-scroll {
+                transition-delay: 0.2s;
+            }
+            
+            .service-card:nth-child(3).animate-on-scroll {
+                transition-delay: 0.3s;
+            }
+            
+            .stat-item:nth-child(1).animate-on-scroll {
+                transition-delay: 0.1s;
+            }
+            
+            .stat-item:nth-child(2).animate-on-scroll {
+                transition-delay: 0.2s;
+            }
+            
+            .stat-item:nth-child(3).animate-on-scroll {
+                transition-delay: 0.3s;
+            }
+        `;
+            document.head.appendChild(style);
+        }
+
+        // 设置滚动效果
+        setupScrollEffects() {
+            let ticking = false;
+
+            const updateScrollEffects = () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.hero-visual');
+
+                parallaxElements.forEach(element => {
+                    const speed = 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+
+                ticking = false;
+            };
+
+            const requestScrollUpdate = () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollEffects);
+                    ticking = true;
+                }
+            };
+
+            window.addEventListener('scroll', requestScrollUpdate);
+        }
+
+        // 显示模态框
+        showModal(title, content) {
+            // 创建模态框
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">${title}</h3>
+                    <button class="modal-close" aria-label="关闭">&times;</button>
+                </div>
+                <div class="modal-body">
+                    ${content}
+                </div>
+            </div>
+        `;
+
+            document.body.appendChild(modal);
+
+            // 设置关闭事件
+            const closeBtn = modal.querySelector('.modal-close');
+            const handleClose = () => {
+                modal.classList.remove('active');
+                setTimeout(() => modal.remove(), 300);
+            };
+
+            closeBtn.addEventListener('click', handleClose);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) handleClose();
+            });
+
+            // ESC键关闭
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    handleClose();
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+        }
+
+        // 工具方法：节流函数
+        throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // 工具方法：防抖函数
+        debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+    }
+
+    // 初始化应用
+    document.addEventListener('DOMContentLoaded', () => {
+        window.repairApp = new RepairDepartmentApp();
+
+        // 为按钮添加事件监听
+        const primaryBtns = document.querySelectorAll('.btn-primary');
+        primaryBtns.forEach(btn => {
+            if (btn.textContent.includes('立即加入')) {
+                btn.addEventListener('click', () => {
+                    document.getElementById('join').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+
+        const secondaryBtns = document.querySelectorAll('.btn-secondary');
+        secondaryBtns.forEach(btn => {
+            if (btn.textContent.includes('了解更多')) {
+                btn.addEventListener('click', () => {
+                    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+    });
+
+    // 导出应用类
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = RepairDepartmentApp;
+    }
+//theme
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', () => {
+        // 只有在浏览器端，当DOM加载完毕后，才会执行这里的代码
+
+        // 主题管理系统
+        class ThemeManager {
+            constructor() {
+                this.currentTheme = this.getStoredTheme() || this.getSystemTheme();
+                this.init();
+            }
+
+            // 初始化主题系统
+            init() {
+                this.applyTheme(this.currentTheme);
+                this.setupEventListeners();
+                this.syncWithOtherPages();
+            }
+
+            // 获取存储的主题
+            getStoredTheme() {
+                // 优先检查 localStorage
+                const localTheme = localStorage.getItem('theme');
+                if (localTheme) {
+                    return localTheme;
+                }
+
+                // 检查 cookie (与其他页面兼容)
+                const cookieTheme = this.getCookie('theme');
+                if (cookieTheme) {
+                    return cookieTheme;
+                }
+
+                return null;
+            }
+
+            // 获取系统主题偏好
+            getSystemTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            }
+
+            // 获取 Cookie
+            getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) {
+                    return parts.pop().split(';').shift();
+                }
+                return null;
+            }
+
+            // 设置 Cookie
+            setCookie(name, value, days = 365) {
+                const expires = new Date();
+                expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+            }
+
+            // 应用主题
+            applyTheme(theme) {
+                const html = document.documentElement;
+
+                if (theme === 'dark') {
+                    html.classList.remove('light');
+                    html.classList.add('dark');
+                } else {
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                }
+
+                this.currentTheme = theme;
+                this.saveTheme(theme);
+                this.updateToggleButton();
+            }
+
+            // 保存主题设置
+            saveTheme(theme) {
+                localStorage.setItem('theme', theme);
+                this.setCookie('theme', theme);
+            }
+
+            // 切换主题
+            toggleTheme() {
+                const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+                this.applyTheme(newTheme);
+
+                // 触发自定义事件，通知其他组件主题已更改
+                window.dispatchEvent(new CustomEvent('themeChanged', {
+                    detail: { theme: newTheme }
+                }));
+            }
+
+            // 更新切换按钮状态
+            updateToggleButton() {
+                const toggleBtn = document.getElementById('theme-toggle');
+                if (toggleBtn) {
+                    toggleBtn.setAttribute('aria-label',
+                        this.currentTheme === 'dark' ? '切换到亮色模式' : '切换到深色模式'
+                    );
+                }
+            }
+
+            // 设置事件监听器
+            setupEventListeners() {
+                // 主题切换按钮
+                const toggleBtn = document.getElementById('theme-toggle');
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', () => this.toggleTheme());
+                }
+
+                // 监听系统主题变化
+                if (window.matchMedia) {
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                        if (!this.getStoredTheme()) {
+                            this.applyTheme(e.matches ? 'dark' : 'light');
+                        }
+                    });
+                }
+
+                // 监听存储变化 (用于跨标签页同步)
+                window.addEventListener('storage', (e) => {
+                    if (e.key === 'theme' && e.newValue !== this.currentTheme) {
+                        this.applyTheme(e.newValue);
+                    }
+                });
+            }
+
+            // 与其他页面同步主题
+            syncWithOtherPages() {
+                // 监听其他页面的主题变化
+                window.addEventListener('themeChanged', (e) => {
+                    if (e.detail.theme !== this.currentTheme) {
+                        this.applyTheme(e.detail.theme);
+                    }
+                });
+            }
+
+            // 获取当前主题
+            getCurrentTheme() {
+                return this.currentTheme;
+            }
+
+            // 强制设置主题
+            setTheme(theme) {
+                if (theme === 'dark' || theme === 'light') {
+                    this.applyTheme(theme);
+                }
+            }
+        }
+
+        // 在 DOM 加载后创建全局主题管理器实例
+        window.themeManager = new ThemeManager();
+    });
+</script>
+</body>

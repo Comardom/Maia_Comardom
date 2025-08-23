@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河南大学网站工作室 - 网页部</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vue.js for reactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <!-- Google Fonts for a modern, techy feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the techy/glowing effect */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        .card-glow {
+            transition: all 0.3s ease;
+            border: 1px solid #2a3a68;
+        }
+        .card-glow:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+            margin-top: 12px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+        /* Timeline specific styles */
+        .timeline-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            to { box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.4); }
+        }
+        .timeline-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .timeline-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        /* Tag animations */
+        .tag-hover {
+            transition: all 0.3s ease;
+        }
+        .tag-hover:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        /* Custom scrollbar for a more integrated look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3a68;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="antialiased">
+        <!-- Animated Particle Background -->
+        <div id="particles-js"></div>
+
+        <div class="content-wrapper">
+            <!-- Header/Navigation -->
+            <header class="fixed top-0 left-0 w-full bg-black/30 backdrop-blur-md p-4 z-50 border-b border-gray-800/50">
+                <div class="container mx-auto flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <!-- 在此处添加您的图标内容 -->
+                            <img src="/plastic-blue-trans-wswd.svg" alt="Logo" class="w-8 h-8">
+                        </div>
+                        <div class="text-xl font-bold text-glow font-mono">
+                            HENU.WEBDEV
+                        </div>
+                    </div>
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a v-for="link in navLinks" :key="link.id" :href="'#' + link.id" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">{{ link.name }}</a>
+                        <!-- Join Us Button -->
+                        <a href="#" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-5 rounded-full text-sm transition-all duration-300 shadow-lg shadow-blue-600/30">
+                            加入我们
+                        </a>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
+                <div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
+                        河南大学网站工作室 <span class="block text-blue-400 text-glow">网页制作部</span>
+                    </h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 font-light">
+                        我们是河大官方网站的构建者与守护者，用代码驱动信息，用设计连接未来。
+                    </p>
+                    <div class="mt-8">
+                        <a href="#about" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg shadow-blue-600/30">
+                            探索我们的世界
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us Section -->
+            <section id="about" class="py-20 px-4">
+                <div class="container mx-auto max-w-5xl">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 text-white">关于我们</h2>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="text-gray-300 leading-relaxed space-y-4 text-lg">
+                            <p>{{ about.intro }}</p>
+                            <p>{{ about.mission }}</p>
+                        </div>
+                        <div class="flex flex-col space-y-4">
+                            <div v-for="core in coreResponsibilities" :key="core.title" class="bg-gray-900/50 p-6 rounded-lg border border-gray-800 flex items-start space-x-4 card-glow">
+                                <div class="flex-shrink-0 text-blue-400" v-html="core.icon"></div>
+                                <div>
+                                    <h3 class="font-bold text-xl text-white">{{ core.title }}</h3>
+                                    <p class="text-gray-400">{{ core.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Organizational Structure Section -->
+            <section id="structure" class="py-20 px-4 bg-black/20">
+                <div class="container mx-auto">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 text-white">组织架构</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div v-for="role in structure" :key="role.title" class="bg-gray-900/50 rounded-lg p-6 text-center flex flex-col items-center card-glow">
+                            <div class="flex-shrink-0 text-blue-400 mb-4" v-html="role.icon"></div>
+                            <h3 class="text-xl font-bold text-white mb-2">{{ role.title }}</h3>
+                            <p class="text-gray-400 flex-grow">{{ role.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-20 px-4">
+                <div class="container mx-auto">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 text-white">核心项目成就</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div v-for="project in projects" :key="project.title" class="bg-gray-900/50 rounded-lg p-6 flex flex-col card-glow">
+                            <div class="flex-shrink-0 text-blue-400 mb-4" v-html="project.icon"></div>
+                            <h3 class="text-xl font-bold text-white mb-2">{{ project.title }}</h3>
+                            <p class="text-gray-400 flex-grow">{{ project.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack Section -->
+            <section id="tech" class="py-20 px-4 bg-black/20">
+                <div class="container mx-auto text-center">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-12 text-white">我们的技术栈</h2>
+                    <p class="max-w-2xl mx-auto text-gray-400 mb-12">我们拥抱前沿技术，不断探索和实践，以构建更高效、更稳定、更具交互性的校园网络平台。</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8">
+                        <div v-for="tech in techStack" :key="tech.name" class="flex flex-col items-center group">
+                            <div class="w-16 h-16 flex items-center justify-center bg-gray-900/50 rounded-full border border-gray-800 transition-all duration-300 group-hover:border-blue-500 group-hover:scale-110" v-html="tech.icon"></div>
+                            <span class="mt-3 text-sm text-gray-400 group-hover:text-white transition-colors">{{ tech.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Department History Section -->
+            <section id="history" class="py-20 px-4 bg-black/20">
+                <div class="container mx-auto">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 text-white">历史足迹</h2>
+                    <p class="max-w-2xl mx-auto text-center text-gray-400 mb-12">记录网页部每一年的成长轨迹，见证我们的荣耀与辉煌。</p>
+                    
+                    <!-- Timeline Container -->
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 opacity-30"></div>
+                        
+                        <!-- History Items -->
+                        <div class="space-y-12">
+                            <div v-for="(year, index) in departmentHistory" :key="year.grade" class="relative flex items-center" :class="index % 2 === 0 ? 'justify-start' : 'justify-end'">
+                                <!-- Timeline Node -->
+                                <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full timeline-glow z-10"></div>
+                                
+                                <!-- Content Card -->
+                                <div class="timeline-card w-full max-w-lg mx-8 bg-gray-900/50 rounded-xl border border-gray-800 card-glow overflow-hidden" :class="index % 2 === 0 ? 'mr-auto ml-8' : 'ml-auto mr-8'">
+                                    <!-- Year Header -->
+                                    <div class="px-6 py-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-gray-800">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-2xl font-bold text-glow font-mono">{{ year.grade }}级</h3>
+                                            <div class="text-blue-400">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Content Grid -->
+                                    <div class="p-6 space-y-6">
+                                        <!-- Core Members -->
+                                        <div class="space-y-3">
+                                            <div class="flex items-center text-blue-400 mb-2">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                                                <h4 class="text-sm font-semibold uppercase tracking-wide font-mono">核心成员</h4>
+                                            </div>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span v-for="member in year.coreMembers" :key="member" class="tag-hover inline-block px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs border border-blue-800/50">
+                                                    {{ member }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Honors -->
+                                        <div class="space-y-3">
+                                            <div class="flex items-center text-yellow-400 mb-2">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
+                                                <h4 class="text-sm font-semibold uppercase tracking-wide font-mono">所取荣誉</h4>
+                                            </div>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span v-for="honor in year.honors" :key="honor" class="tag-hover inline-block px-3 py-1 bg-yellow-900/30 text-yellow-300 rounded-full text-xs border border-yellow-800/50">
+                                                    {{ honor }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Work Content -->
+                                        <div class="space-y-3">
+                                            <div class="flex items-center text-green-400 mb-2">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                                                <h4 class="text-sm font-semibold uppercase tracking-wide font-mono">工作内容</h4>
+                                            </div>
+                                            <div class="space-y-2">
+                                                <div v-for="work in year.workContent" :key="work" class="flex items-start">
+                                                    <div class="w-1 h-1 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                                    <span class="text-gray-300 text-sm leading-relaxed">{{ work }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="py-8 bg-gray-900/50 border-t border-gray-800/50 text-center text-gray-400">
+                <p>&copy; {{ new Date().getFullYear() }} 河南大学网站工作室. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Designed & Coded by the Web Department</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#2a3a68", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+            },
+            "retina_detect": true
+        });
+
+        // Initialize Vue app
+        new Vue({
+            el: '#app',
+            data: {
+                navLinks: [
+                    { id: 'about', name: '关于我们' },
+                    { id: 'structure', name: '组织架构' },
+                    { id: 'projects', name: '核心项目' },
+                    { id: 'history', name: '历史足迹' },
+                    { id: 'tech', name: '技术栈' }
+                ],
+                about: {
+                    intro: '网页部是河南大学网站工作室的核心技术部门，主要负责河南大学主页、新闻网等一系列官方网站的设计、开发、制作与后期维护工作。',
+                    mission: '我们致力于通过精湛的技术和富有创意的设计，为全校师生提供稳定、高效、美观的网络信息服务，成为连接学校与世界的重要数字桥梁。'
+                },
+                coreResponsibilities: [
+                    {
+                        title: '官网开发与维护',
+                        description: '承担河南大学主页的迭代开发与日常维护，保障学校第一门户的稳定运行。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>'
+                    },
+                    {
+                        title: '专题网站制作',
+                        description: '为迎新、毕业季等重大活动设计和制作专题网站，营造浓厚的校园文化氛围。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l.346.666L19.5 15.3l-6.846 4.01L6 15.3l7.154-11.944z"></path><path d="M12 22v-6.5"></path><path d="M2.5 10.5l9.5 5.5 9.5-5.5"></path><path d="M2.5 15.3l9.5-5.5 9.5 5.5"></path></svg>'
+                    },
+                     {
+                        title: '技术探索与创新',
+                        description: '不断引入和实践Web领域的新技术、新框架，推动校园网站服务的现代化和智能化。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>'
+                    }
+                ],
+                structure: [
+                    {
+                        title: '站长',
+                        description: '由工作时间满一年的部长/副部长里选出，负责这个部门与老师和工作室的沟通协调。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>'
+                    },
+                    {
+                        title: '部长/副部长',
+                        description: '在部门内工作一年的优秀成员里选出，负责部门的内部管理和项目安排，以及部门日常工作的筹备。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
+                    },
+                    {
+                        title: '项目组',
+                        description: '在新成员中选拔技术优秀、学习能力强的成员，负责部门项目的实现和维护，是部门的中坚力量。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>'
+                    },
+                    {
+                        title: '兴趣组',
+                        description: '部门的根本，由全校对编程感兴趣、对技术有热爱的同学组成，是项目组成员的来源。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13a6 6 0 0 0-12 0"></path><path d="M12 22v-6"></path><path d="M12 2a4 4 0 0 0-4 4c0 1.66 1.34 3 3 3h2a3 3 0 0 1 3 3c0 1.66-1.34 3-3 3s-3-1.34-3-3V8"></path></svg>'
+                    }
+                ],
+                projects: [
+                    {
+                        title: '河南大学官网三次改版',
+                        description: '主导并完成了学校官网的三次重大升级改版，不断提升用户体验和视觉形象。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>'
+                    },
+                    {
+                        title: '河南大学新闻网',
+                        description: '构建了学校官方新闻发布平台，成为对外展示河大形象、发布权威信息的主渠道。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h0l2 2.4.5-1 2 1.4.5-2 2 2.4 1-1.8 1 1.2z"></path></svg>'
+                    },
+                    {
+                        title: '《河大在线》',
+                        description: '打造了集新闻、文化、生活于一体的综合性信息服务平台，丰富了校园网络文化。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg>'
+                    },
+                    {
+                        title: '迎新/毕业专题网站',
+                        description: '为新生和毕业生量身定制专题网站，提供一站式信息服务，传递人文关怀。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M12 18v-6"></path><path d="m9 15 3-3 3 3"></path></svg>'
+                    },
+                    {
+                        title: '河大IT技术交流论坛',
+                        description: '搭建并运营校内IT技术爱好者的交流平台，促进知识分享与技术思想的碰撞。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>'
+                    },
+                    {
+                        title: '校园文化网',
+                        description: '早期网络建设的里程碑，为展现校园生活、学生风采提供了重要的网络平台。',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>'
+                    },
+                    {
+                        title: '河大招生网',
+                        description: '为高考学子提供河大招生相关信息',
+                        icon: '<svg xmlns="" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>'
+                    },
+                    {
+                        title: '河大党委宣传部官网',
+                        description: '宣传河大新形象，展示校园党政风采',
+                        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>'
+                    },
+                      {
+                        title: '河大党委办公室',
+                        description: '为学校党政工作提供便利',
+                        icon: '<svg xmlns="" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>'
+                    },
+                ],
+                techStack: [
+                    { name: 'Vue.js', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-green-500"><title>Vue.js</title><path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39Z"/></svg>' },
+                    { name: 'React', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-cyan-400"><title>React</title><path d="M12.001 2.002c-5.524 0-10.001 4.476-10.001 10.001s4.477 10.001 10.001 10.001 10.001-4.476 10.001-10.001-4.477-10.001-10.001-10.001zm0 18.002c-4.412 0-8.001-3.588-8.001-8.001s3.589-8.001 8.001-8.001 8.001 3.588 8.001 8.001-3.589 8.001-8.001 8.001zm2.38-8.24c.44-.28.72-.78.72-1.33 0-.55-.28-1.05-.72-1.33-.91-.58-2.38-1.09-2.38-2.1s.92-1.58 2.1-1.58c.95 0 1.63.51 1.98 1.2l1.6-.99c-.5-1.03-1.6-1.71-3.19-1.71-1.98 0-3.6 1.22-3.6 3.28 0 2.33 2.02 2.91 2.92 3.48.42.27.68.73.68 1.25 0 .51-.26.98-.68 1.25-.92.58-2.38 1.09-2.38 2.1s.92 1.58 2.1 1.58c1.11 0 1.92-.59 2.3-1.39l1.6.99c-.58 1.22-1.89 2-3.51 2-1.98 0-3.6-1.22-3.6-3.28.01-2.33 2.02-2.91 2.92-3.48z"/></svg>' },
+                    { name: 'JavaScript', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-yellow-400"><title>JavaScript</title><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.82-2.25-2.033-3.123-1.25-1.01-2.768-1.64-4.383-1.64-1.798 0-3.234.62-4.3,1.61-1.095,1.01-1.745,2.4-1.745,4.108 0 1.74.652 3.18 1.745 4.182 1.066.98 2.502 1.55 4.3 1.55 1.58 0 2.97-.55 4.092-1.55 1.122-1.01 1.77-2.39 1.824-4.14h-3.48c-.055.93-.435 1.64-1.14 2.12-.705.48-1.58.72-2.61.72-1.01 0-1.84-.24-2.49-.72-.65-.48-1.01-1.19-1.01-2.12 0-.96.33-1.71 1.01-2.25.65-.54 1.48-.81 2.49-.81 1.01 0 1.82.27 2.42.81.6.54.91 1.26.91 2.16h3.51zM10.94 13.532v-6.84h3.234v6.84H10.94z"/></svg>' },
+                    { name: 'HTML5', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-orange-500"><title>HTML5</title><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622-13.23.002.69 7.843h11.385l-.33 3.572-3.307.924-3.215-.927-.208-2.268H5.23l.318 3.426 6.438 1.787 6.416-1.787.928-10.324H8.53z"/></svg>' },
+                    { name: 'CSS3', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-blue-500"><title>CSS3</title><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.913H5.41l.213 2.622h10.12l-.213 2.232H5.84l.213 2.622h9.27l-.318 3.426-2.91.804-2.955-.81-.186-2.11H6.24l.318 3.572 5.428 1.503 5.472-1.503.636-7.05z"/></svg>' },
+                    { name: 'Node.js', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-green-400"><title>Node.js</title><path d="M12.37.24L1.74 6.42a.5.5 0 00-.28.43l.02 10.3a.5.5 0 00.28.43l10.63 6.18a.5.5 0 00.5 0l10.63-6.18a.5.5 0 00.28-.43l.02-10.3a.5.5 0 00-.28-.43L12.87.24a.5.5 0 00-.5 0zM12 1.3l9.94 5.74-2.08 1.2-7.86-4.54zm-1.12 19.4l-7.86-4.53 2.08-1.2 5.78 3.33zm-.01-5.87l-7.93-4.58 7.93-4.58 7.94 4.58zm.1-10.15L4.14 11.4l5.8 3.35 7.86-4.54z"/></svg>' },
+                    { name: 'Python', icon: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 fill-current text-blue-400"><title>Python</title><path d="M11.115 16.339s.494.395.494.987v1.975s-.198.987-1.185.987h-1.778s-.987.099-.987-.987v-3.951s0-.987.987-.987h2.469s.988 0 .988.987v.988zm-3.161-3.951h-1.975s-.987 0-.987-.987v-1.975s0-.987.987-.987h3.951s.987 0 .987.987v1.975s0 .987-.987.987h-.988zm-2.173-6.914s-.494-.395-.494-.987v-1.975s.198-.987 1.185-.987h1.778s.987-.099.987.987v3.951s0 .987-.987.987h-2.469s-.988 0-.988-.987v-.988zm10.075 1.185h1.975s.987 0 .987.987v1.975s0 .987-.987.987h-3.951s-.987 0-.987-.987v-1.975s0-.987.987-.987h.988zm-2.766 11.852s0 .987-.987.987h-1.975s-.987 0-.987-1.086v-1.876s0-.987.987-.987h3.951s.987 0 .987.987v1.975s-.099.987-.987.987zm2.766-5.926c.593 0 .987-.395.987-.987v-1.975s0-.987-.987-.987h-1.778s-.987.099-.987-.987v-3.951s0-.987.987-.987h2.469s.988 0 .988.987v.988s.494.395.494.987v1.975s-.198.987-1.185.987h-1.778zm-8.89-8.89c-.593 0-.987.395-.987.987v1.975s0 .987.987.987h1.778s.987-.099.987.987v3.951s0 .987-.987.987h-2.469s-.988 0-.988-.987v-.988s-.494-.395-.494-.987v-1.975s.198-.987 1.185-.987h1.778z"/></svg>' },
+                    { name: '机器学习', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-purple-400"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v0A2.5 2.5 0 0 1 9.5 7v0A2.5 2.5 0 0 1 7 4.5v0A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 1 17 4.5v0A2.5 2.5 0 0 1 14.5 7v0A2.5 2.5 0 0 1 12 4.5v0A2.5 2.5 0 0 1 14.5 2Z"></path><path d="M12 12h.01"></path><path d="M16 16h.01"></path><path d="M8 16h.01"></path><path d="M12 22a8 8 0 0 0 8-8V9a8 8 0 0 0-8-8h-1a8 8 0 0 0-8 8v5a8 8 0 0 0 8 8Z"></path></svg>' },
+                    { name: '嵌入式开发', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-indigo-400"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><rect x="7" y="7" width="10" height="10" rx="1" ry="1"></rect><path d="M12 2v5"></path><path d="M12 17v5"></path><path d="M2 12h5"></path><path d="M17 12h5"></path></svg>' },
+                    { name: '算法', icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-teal-400"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="10" y1="6.5" x2="14" y2="6.5"></line><line x1="6.5" y1="10" x2="6.5" y2="14"></line><line x1="17.5" y1="10" x2="17.5" y2="14"></line><line x1="10" y1="17.5" x2="14" y2="17.5"></line></svg>' }
+                ],
+                departmentHistory: [
+                    {
+                        grade: '2024',
+                        coreMembers: [
+                            '胡珊珊 - 站长',
+                            '蒙利展 - 部长/项目组组长',
+                            '陈博羽 - 部长/项目组组长',
+                            '孟天赐 - 副部长/项目组成员',
+                            '季新达 - 副部长/项目组成员',
+                            '李宜航 - 副部长/项目组成员',
+                            '林宇飞 - 副部长/项目组成员',
+                            '韩泽旭 - 项目组成员',
+                            '陈锦翰 - 项目组成员/优秀播音员'
+                        ],
+                        honors: [
+                            '优秀网站建设团队',
+                            '部门振兴计划策划团队'
+                        ],
+                        workContent: [
+                            '河南大学党委宣传部网站改版',
+                            '河南大学网站工作室官网改版',
+                            '河大技术论坛开发',
+                            '网页部考核系统开发'
+                        ]
+                    },
+                    {
+                        grade: '2023',
+                        coreMembers: [
+                            '高政 - 部长',
+                            '丁亦豪 - 部长',
+                            '桂浩翔 - 副部长',
+                            '周杰 - 副部长'
+                        ],
+                        honors: [
+                            '优化网站建设',
+                            '部门文化建设',
+                        ],
+                        workContent: [
+                            '部门建设整顿',
+                        ]
+                    },
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

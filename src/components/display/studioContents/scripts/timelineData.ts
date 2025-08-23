@@ -8,9 +8,9 @@ export type TimelineEvent = {
 
 export const timelineEvents: TimelineEvent[] = [
     {
-      year:'',
-      title:'',
-      description:'',
+        year:'',
+        title:'SSSSSSSSSSSSSSSSStart……',
+        description:'',
     },
     {
         year: '2001',
@@ -58,10 +58,20 @@ export const timelineEvents: TimelineEvent[] = [
         description: '2009—2010 年间，河南大学第一份电子杂志《Share》诞生。',
     },
     {
-        year:'2222',
-        title:'95623',
-        description: '95623',
-    }
+        year:'……',
+        title:'',
+        description: '',
+    },
+    {
+        year:'2024 —— 2025',
+        title:'网站工作室全新网站上线',
+        description:'崭新的工作室与部门网页，即将迎来的论坛，都在指引着更好的未来。',
+    },
+    {
+        year:'',
+        title:'Endlessssssssssssssssssss……',
+        description:'',
+    },
 
     // 预留位置，后续添加 2023 / 2024：
     // { year: '2023', title: '...', description: '...' },

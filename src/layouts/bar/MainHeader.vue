@@ -24,7 +24,7 @@ onMounted(() => {
 			<div class="top-bar-content">
 				<div class="logo-title-wrapper">
 					<a href="">
-						<img src="/plain_black_trans_big.svg" alt="logo" class="logo" />
+						<img src="/plastic-black-trans-wswd.svg" alt="logo" class="logo" />
 					</a>
 					<span class="title-text">河南大学网站工作室</span>
 				</div>
@@ -39,7 +39,7 @@ onMounted(() => {
 			<div class="top-bar-content">
 				<div class="logo-title-wrapper">
 					<a href="">
-						<img src="/plain_white_trans_big.svg" alt="logo" class="logo" />
+						<img src="/plastic-white-trans-wswd.svg" alt="logo" class="logo" />
 					</a>
 					<span class="title-text">河南大学网站工作室</span>
 				</div>

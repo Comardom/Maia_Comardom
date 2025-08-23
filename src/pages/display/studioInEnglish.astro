@@ -1,0 +1,45 @@
+---
+const { title = 'HENU WEB STUDIO' } = Astro.props;
+import IsDarkOrNotWithVerticalScrollLayout from "../../layouts/IsDarkOrNotWithVerticalScrollLayout.astro"
+import "/src/styles/global.css";
+import "/src/styles/display/studio.css"
+//监测并改变data-section
+import SnapObserver from "../../components/display/studioContents/SnapObserver.vue"
+//检测设备UA
+import DeviceDetector from "../../components/display/studioContents/DeviceDetector.vue"
+//动画
+import PageAnimator from "../../components/PageAnimator.vue";
+//侧边切换按钮
+import SideNav from "../../components/display/studioContents/SideNav.vue";
+import DisplayStudioBreathHeaderInEnglish from "../../components/display/studioContents/DisplayStudioBreathHeaderInEnglish.vue";
+import FullScreenPhotoInEnglish from "../../components/display/studioContents/FullScreenPhotoInEnglish.vue";
+import DisplayStudioDepartmentsIntroInEnglish from "../../components/display/studioContents/DisplayStudioDepartmentsIntroInEnglish.vue";
+import DisplayStudioFooterInEnglish from "../../components/display/studioContents/DispalyStudioFooterInEnglish.vue"
+import DisplayStudioTimelineInEnglish from "../../components/display/studioContents/DisplayStudioTimelineInEnglish.vue"
+---
+<IsDarkOrNotWithVerticalScrollLayout title={title}>
+    <SnapObserver client:load />
+    <DeviceDetector client:load />
+    <PageAnimator client:load />
+    <!--<SideNav client:visible />-->
+    <div class="snap-wrapper">
+        <DisplayStudioBreathHeaderInEnglish client:load />
+        <div class="snap-section" id="Prologue" data-section="1">
+            <FullScreenPhotoInEnglish client:load />
+        </div>
+        <!--<div class="snap-section" id="section-2" data-section="2">-->
+        <!--    <BlankPage client:load message="2" />-->
+        <!--</div>-->
+        <div class="snap-section" id="Symphony" data-section="2">
+            <DisplayStudioDepartmentsIntroInEnglish client:load />
+        </div>
+        <div class="snap-section" id="Timeline" data-section="3">
+            <DisplayStudioTimelineInEnglish client:load />
+        </div>
+
+        <div class="snap-section" id="Epilogue" data-section="4">
+            <DisplayStudioFooterInEnglish client:idle />
+        </div>
+    </div>
+</IsDarkOrNotWithVerticalScrollLayout>
+<!--const current = document.getElementById("snap-state")?.getAttribute("data-current-section");-->
