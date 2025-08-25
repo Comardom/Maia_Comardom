@@ -111,32 +111,219 @@ npx astro dev
 | `npx <command>`        | `pnpm exec <command>` | 执行包里的可执行文件             |
 | `npm install`          | `pnpm install`        | 安装所有依赖                 |
 ```plaintext
+    ~/WebstormProjects/Maia    master ?1  tree -L 5 -I 'node_modules'                                                                                                                                                    ✔ 
 .
 ├── astro.config.mjs
 ├── backend
 │   ├── db.js
 │   └── models
 │       └── User.js
+├── dist
+│   ├── client
+│   │   ├── ai480.svg
+│   │   ├── alpha.0.vector.stroke.svg
+│   │   ├── _astro
+│   │   │   ├── about.C2CyhA_m.css
+│   │   │   ├── client.BpDjmh7x.js
+│   │   │   ├── DeviceDetector.xYUhRA8G.js
+│   │   │   ├── DispalyStudioFooter.CmGcql_A.js
+│   │   │   ├── DispalyStudioFooterInEnglish.CBQJ3odT.js
+│   │   │   ├── DispalyStudioFooterInZHTW.B6506_m5.js
+│   │   │   ├── DisplayStudioBreathHeader.BGx8LWkP.js
+│   │   │   ├── DisplayStudioBreathHeaderInEnglish.DpItZoWw.js
+│   │   │   ├── DisplayStudioBreathHeaderInZHTW.BAd_Pf7P.js
+│   │   │   ├── DisplayStudioDepartmentsIntro.B6YyF-Fs.js
+│   │   │   ├── DisplayStudioDepartmentsIntroInEnglish.El-tNC-U.js
+│   │   │   ├── DisplayStudioDepartmentsIntroInZHTW.CLGbeHJO.js
+│   │   │   ├── DisplayStudioTimeline.BI6PAgDz.js
+│   │   │   ├── DisplayStudioTimelineInEnglish.CSuINPiZ.js
+│   │   │   ├── DisplayStudioTimelineInZHTW.DZkimEAZ.js
+│   │   │   ├── eventBus.G3ZlhegR.js
+│   │   │   ├── FullScreenPhoto.BvNxGqfi.js
+│   │   │   ├── FullScreenPhotoInEnglish.CmS_NT0k.js
+│   │   │   ├── FullScreenPhotoInZHTW.BcIox7jv.js
+│   │   │   ├── fullScreenPhotoMap.DRcBCWCs.js
+│   │   │   ├── index.DKtf60Sy.js
+│   │   │   ├── login.B17RB_vF.css
+│   │   │   ├── login.CctxAlrR.css
+│   │   │   ├── login.CSxf_ANb.css
+│   │   │   ├── LoginWithPasswordIsland.DNIM2aPl.js
+│   │   │   ├── LoginWithQrcodeIsland.gFTLrGMk.js
+│   │   │   ├── main.Dltamtgu.css
+│   │   │   ├── main.DsfmxbWz.css
+│   │   │   ├── main.Dt-caurR.png
+│   │   │   ├── MainHeader.BwBR0eIQ.js
+│   │   │   ├── officeApp.Z0eQOEzQ.js
+│   │   │   ├── office.tn0RQdqM.css
+│   │   │   ├── PageAnimator.BAgPqZyP.js
+│   │   │   ├── password.BXPSOJw6.js
+│   │   │   ├── PlasticThemeToggleIsland.CINpW97K.js
+│   │   │   ├── _plugin-vue_export-helper.DlAUqK2U.js
+│   │   │   ├── register.CC5blvqR.css
+│   │   │   ├── register.Cn5FE87D.css
+│   │   │   ├── RegisterForTOTPIsland.Dz4W9761.js
+│   │   │   ├── RegisterForUidUndPwdIsland.BESipvV5.js
+│   │   │   ├── repair.CHCCmCWe.css
+│   │   │   ├── runtime-core.esm-bundler.C8-5otuY.js
+│   │   │   ├── runtime-dom.esm-bundler.Z9t0CkHO.js
+│   │   │   ├── SnapObserver.CPg1LJjn.js
+│   │   │   ├── studio.B_-BRP2u.css
+│   │   │   ├── studio.CdlSiv5r.css
+│   │   │   ├── studio.CjTcmTLC.css
+│   │   │   ├── studio.CWKdeAJR.css
+│   │   │   ├── studio.D9ZOyAIC.css
+│   │   │   ├── studioInEnglish.BtGoB-ic.css
+│   │   │   ├── studioInEnglish.DVZvqRzx.css
+│   │   │   ├── studioInZHTW.cmqp9A_h.css
+│   │   │   ├── studioInZHTW.Cw8u8uDC.css
+│   │   │   ├── ThemeToggleIsland.BjSbEK4_.js
+│   │   │   ├── TimelineVertical.Cl-nPdYB.js
+│   │   │   ├── umbrellaAssetMap.BAcculVc.js
+│   │   │   ├── useFloatingBlocks.CYvHLhuX.js
+│   │   │   ├── useMediaQuery.cm77PDyN.js
+│   │   │   ├── useThemeObserver.CWJfd_Cw.js
+│   │   │   └── video.C-AaLTaD.css
+│   │   ├── displayOffice
+│   │   │   ├── banner.jpg
+│   │   │   ├── bg3.jpg
+│   │   │   ├── bg4.jpg
+│   │   │   ├── bg.jpg
+│   │   │   ├── footer.jpg
+│   │   │   ├── logo.svg
+│   │   │   └── number.jpg
+│   │   ├── displayRepair
+│   │   │   ├── logo.svg
+│   │   │   ├── main.png
+│   │   │   ├── qq-group-qr.jpg
+│   │   │   └── services
+│   │   │       ├── fault-diagnosis.jpeg
+│   │   │       ├── hardware-repair.jpeg
+│   │   │       ├── performance-optimization.png
+│   │   │       ├── skill-training.png
+│   │   │       ├── system-reinstall.jpeg
+│   │   │       └── virus-cleanup.png
+│   │   ├── displayStudio
+│   │   │   ├── compressed
+│   │   │   │   ├── 241106-dark.webp
+│   │   │   │   └── 250420-light.webp
+│   │   │   └── umbrella
+│   │   │       ├── closed-black-umbrella.svg
+│   │   │       ├── closed-white-umbrella.svg
+│   │   │       ├── open-black-umbrella.svg
+│   │   │       └── open-white-umbrella.svg
+│   │   ├── Henan_University_logo.png
+│   │   ├── id480.svg
+│   │   ├── lr480.svg
+│   │   ├── medal.webp
+│   │   ├── multiply.svg
+│   │   ├── photo.py
+│   │   ├── plastic-black-trans-wswd.svg
+│   │   ├── plastic-blue-trans-wswd.svg
+│   │   ├── plastic-white-trans-wswd.svg
+│   │   ├── ps480.svg
+│   │   └── subset_font.woff2
+│   └── server
+│       ├── _@astrojs-ssr-adapter.mjs
+│       ├── chunks
+│       │   ├── astro
+│       │   │   └── server_D674c40x.mjs
+│       │   ├── astro-designed-error-pages_DEU1uT92.mjs
+│       │   ├── _@astrojs-ssr-adapter_C_ZYu14p.mjs
+│       │   ├── DesignDepartmentIsland_CBhNga4G.mjs
+│       │   ├── fs-lite_COtHaKzy.mjs
+│       │   ├── IsDarkOrNotLayout_Cgez3aTD.mjs
+│       │   ├── logoMap_CZ0KtLqS.mjs
+│       │   ├── management.8647311b_l0sNRNKZ.mjs
+│       │   ├── node_CHtUtOBJ.mjs
+│       │   ├── PageAnimator_AibTLNE7.mjs
+│       │   ├── password_CYJ0Z0IM.mjs
+│       │   ├── path_hV-dQId8.mjs
+│       │   ├── PlasticThemeToggleIsland_CRpscixs.mjs
+│       │   ├── _plugin-vue_export-helper_pcqpp-6-.mjs
+│       │   ├── sharp_DO4Oomsf.mjs
+│       │   └── User_CB5toi1y.mjs
+│       ├── entry.mjs
+│       ├── manifest_DXWaH09M.mjs
+│       ├── _noop-actions.mjs
+│       ├── _noop-middleware.mjs
+│       ├── pages
+│       │   ├── about.astro.mjs
+│       │   ├── admin
+│       │   │   ├── login.astro.mjs
+│       │   │   ├── management.astro.mjs
+│       │   │   └── register.astro.mjs
+│       │   ├── api
+│       │   │   ├── totp
+│       │   │   └── uidundpwd
+│       │   ├── auth
+│       │   │   ├── login.astro.mjs
+│       │   │   └── register.astro.mjs
+│       │   ├── display
+│       │   │   ├── main.astro.mjs
+│       │   │   ├── mainislands
+│       │   │   ├── newmedia.astro.mjs
+│       │   │   ├── office.astro.mjs
+│       │   │   ├── repair.astro.mjs
+│       │   │   ├── studio.astro.mjs
+│       │   │   ├── studioinenglish.astro.mjs
+│       │   │   ├── studioinzhtw.astro.mjs
+│       │   │   ├── video.astro.mjs
+│       │   │   └── web.astro.mjs
+│       │   ├── _image.astro.mjs
+│       │   ├── index.astro.mjs
+│       │   ├── nihilum.astro.mjs
+│       │   └── search.astro.mjs
+│       └── renderers.mjs
+├── env.d.ts
 ├── package.json
-├── package-lock.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── postcss.config.cjs
 ├── private
 │   ├── super-admin.key
 │   └── totp-secrets.json
 ├── public
 │   ├── ai480.svg
 │   ├── alpha.0.vector.stroke.svg
-│   └──displayStudio
-│   │   ── compressed
+│   ├── displayOffice
+│   │   ├── banner.jpg
+│   │   ├── bg3.jpg
+│   │   ├── bg4.jpg
+│   │   ├── bg.jpg
+│   │   ├── footer.jpg
+│   │   ├── logo.svg
+│   │   └── number.jpg
+│   ├── displayRepair
+│   │   ├── logo.svg
+│   │   ├── main.png
+│   │   ├── qq-group-qr.jpg
+│   │   └── services
+│   │       ├── fault-diagnosis.jpeg
+│   │       ├── hardware-repair.jpeg
+│   │       ├── performance-optimization.png
+│   │       ├── skill-training.png
+│   │       ├── system-reinstall.jpeg
+│   │       └── virus-cleanup.png
+│   ├── displayStudio
+│   │   ├── compressed
 │   │   │   ├── 241106-dark.webp
 │   │   │   └── 250420-light.webp
+│   │   └── umbrella
+│   │       ├── closed-black-umbrella.svg
+│   │       ├── closed-white-umbrella.svg
+│   │       ├── open-black-umbrella.svg
+│   │       └── open-white-umbrella.svg
+│   ├── Henan_University_logo.png
 │   ├── id480.svg
 │   ├── lr480.svg
-│   ├── path1.png
+│   ├── medal.webp
+│   ├── multiply.svg
 │   ├── photo.py
 │   ├── plastic-black-trans-wswd.svg
 │   ├── plastic-blue-trans-wswd.svg
 │   ├── plastic-white-trans-wswd.svg
-│   └── ps480.svg
+│   ├── ps480.svg
+│   └── subset_font.woff2
 ├── readme.md
 ├── src
 │   ├── components
@@ -146,21 +333,49 @@ npx astro dev
 │   │   │   ├── RegisterForTOTPIsland.vue
 │   │   │   └── RegisterForUidUndPwdIsland.vue
 │   │   ├── display
-│   │   │   ├── InteractiveInitializer.astro
+│   │   │   ├── newMediaContents
+│   │   │   │   └── scripts
+│   │   │   ├── officeContents
+│   │   │   │   ├── BaseButton.vue
+│   │   │   │   ├── BaseCard.vue
+│   │   │   │   ├── JoinModal.vue
+│   │   │   │   ├── officeApp.vue
+│   │   │   │   ├── scripts
+│   │   │   │   └── ThemeToggle.vue
+│   │   │   ├── repairContents
+│   │   │   │   └── scripts
 │   │   │   └── studioContents
-│   │   │       ├── Demo.vue
+│   │   │       ├── BlankPage.vue
 │   │   │       ├── DeviceDetector.vue
+│   │   │       ├── DispalyStudioFooterInEnglish.vue
+│   │   │       ├── DispalyStudioFooterInZHTW.vue
+│   │   │       ├── DispalyStudioFooter.vue
 │   │   │       ├── DisplayStudioBreathBarHeader.vue
+│   │   │       ├── DisplayStudioBreathHeaderInEnglish.vue
+│   │   │       ├── DisplayStudioBreathHeaderInZHTW.vue
 │   │   │       ├── DisplayStudioBreathHeader.vue
 │   │   │       ├── DisplayStudioBreathLightHeader.vue
-│   │   │       ├── fullScreenPhotoMap.ts
+│   │   │       ├── DisplayStudioDepartmentsIntroInEnglish.vue
+│   │   │       ├── DisplayStudioDepartmentsIntroInZHTW.vue
+│   │   │       ├── DisplayStudioDepartmentsIntro.vue
+│   │   │       ├── DisplayStudioTimelineInEnglish.vue
+│   │   │       ├── DisplayStudioTimelineInZHTW.vue
+│   │   │       ├── DisplayStudioTimeline.vue
+│   │   │       ├── FullScreenPhotoInEnglish.vue
+│   │   │       ├── FullScreenPhotoInZHTW.vue
 │   │   │       ├── FullScreenPhoto.vue
-│   │   │       ├── snapObserver.ts
+│   │   │       ├── scripts
+│   │   │       ├── SideNav.vue
 │   │   │       ├── SnapObserver.vue
-│   │   │       └── useBreathingMode.ts
+│   │   │       ├── TimelineSnake.vue
+│   │   │       ├── TimelineVertical.vue
+│   │   │       ├── UmbrellaMenuInEnglish.vue
+│   │   │       ├── UmbrellaMenuInZHTW.vue
+│   │   │       └── UmbrellaMenu.vue
 │   │   ├── PageAnimator.vue
+│   │   ├── PlasticThemeToggleIslandInEnglish.vue
+│   │   ├── PlasticThemeToggleIslandInZHTW.vue
 │   │   ├── PlasticThemeToggleIsland.vue
-│   │   ├── SideNav.vue
 │   │   └── ThemeToggleIsland.vue
 │   ├── data
 │   │   ├── comments.json
@@ -171,6 +386,8 @@ npx astro dev
 │   │   │   └── MainHeader.vue
 │   │   ├── BaseLayout.astro
 │   │   ├── DarkOrNotWithHorizontalScrollLayout.astro
+│   │   ├── display
+│   │   │   └── displayOfficeLayout.astro
 │   │   ├── IsDarkOrNotLayout.astro
 │   │   └── IsDarkOrNotWithVerticalScrollLayout.astro
 │   ├── pages
@@ -193,11 +410,17 @@ npx astro dev
 │   │   ├── display
 │   │   │   ├── main.astro
 │   │   │   ├── mainIslands
-│   │   │   │   ├── DesignDepartmentIsland.astro
-│   │   │   │   ├── NewMediaCentreIsland.astro
-│   │   │   │   └── Studio.astro
-│   │   │   └── studio.astro
+│   │   │   │   └── DesignDepartmentIsland.astro
+│   │   │   ├── newMedia.html
+│   │   │   ├── office.astro
+│   │   │   ├── repair.astro
+│   │   │   ├── studio.astro
+│   │   │   ├── studioInEnglish.astro
+│   │   │   ├── studioInZHTW.astro
+│   │   │   ├── video.astro
+│   │   │   └── web.html
 │   │   ├── index.astro
+│   │   ├── nihilum.astro
 │   │   └── search.astro
 │   ├── styles
 │   │   ├── adminAndAuth
@@ -208,8 +431,13 @@ npx astro dev
 │   │   │   ├── register.css
 │   │   │   └── registerIsland.css
 │   │   ├── display
-│   │   │   ├── newMediaIsland.css
+│   │   │   ├── newMedia.css
+│   │   │   ├── office.css
+│   │   │   ├── repairComponents.css
+│   │   │   ├── repairMain.css
+│   │   │   ├── repairTheme.css
 │   │   │   ├── studio.css
+│   │   │   ├── videoVerticalScroll.css
 │   │   │   └── withDisplayStudioHeader.css
 │   │   ├── global.css
 │   │   └── horizontalScroll.css
@@ -221,7 +449,48 @@ npx astro dev
 │       ├── logoMap.ts
 │       ├── password.js
 │       ├── theme-init.js
+│       ├── useMediaQuery.ts
 │       └── useThemeObserver.ts
-└── tsconfig.json
+├── tailwind.config.cjs
+├── tsconfig.json
+├── venv
+│   ├── 1.txt
+│   ├── bin
+│   │   ├── activate
+│   │   ├── activate.csh
+│   │   ├── activate.fish
+│   │   ├── Activate.ps1
+│   │   ├── fonttools
+│   │   ├── pip
+│   │   ├── pip3
+│   │   ├── pip3.13
+│   │   ├── pyftmerge
+│   │   ├── pyftsubset
+│   │   ├── python -> /usr/bin/python
+│   │   ├── python3 -> python
+│   │   ├── python3.13 -> python
+│   │   └── ttx
+│   ├── include
+│   │   └── python3.13
+│   ├── lib
+│   │   └── python3.13
+│   │       └── site-packages
+│   │           ├── Brotli-1.1.0.dist-info
+│   │           ├── _brotli.cpython-313-x86_64-linux-gnu.so
+│   │           ├── brotli.py
+│   │           ├── fontTools
+│   │           ├── fonttools-4.59.1.dist-info
+│   │           ├── pip
+│   │           ├── pip-25.1.1.dist-info
+│   │           └── __pycache__
+│   ├── lib64 -> lib
+│   ├── pyvenv.cfg
+│   ├── share
+│   │   └── man
+│   │       └── man1
+│   │           └── ttx.1
+│   ├── taiwan.ttf
+│   └── ⁄.txt
+└── vite-env.d.ts
 
 ```
